@@ -1,0 +1,58 @@
+flowchart TD
+  Start([Nova tarefa]) --> Qual{Qual tipo de tarefa?}
+  Qual -->|Encontro Vanguarda| SOP55[SOP55: Vanguarda]
+  Qual -->|Carrosel, Reel ou Site| SOP56[SOP56: Criativos]
+  Qual -->|Criar ou melhorar prompt| SOP57[SOP57: Prompts de IA]
+  Qual -->|Imagem ou video com IA| SOP58[SOP58: Visual com IA]
+  Qual -->|Guia ou ferramenta digital| SOP59[SOP59: Guias e Apps]
+
+  subgraph SOP55 [SOP55 - Encontros da Vanguarda]
+    E01([Encontro realizado]) --> F01[Fase 01: Aguardar Zoom - 1h a 3h]
+    F01 --> F02[Fase 02: Cortar CapCut + IA - ~1h]
+    F02 --> F03[Fase 03: RI + Mapa Mental - ~20min]
+    F03 --> F04[Fase 04: Upload plataforma Vanguarda - ~10min]
+    F04 --> PAR{Paralelo}
+    PAR --> F05[Fase 05: HandBrake - ~1h a 1h30]
+    PAR --> F06[Fase 06: Thumbnail]
+    F05 --> F07[Fase 07: Upload Vimeo - ~20min]
+    F06 --> F07
+    F07 --> F08[Fase 08: Publicar + avisar WhatsApp]
+    F08 --> END55([Concluido - ClickUp])
+  end
+
+  subgraph SOP56 [SOP56 - Carroseis, Reels e Materiais]
+    D56([Demanda de criativo]) --> T56{Qual tipo?}
+    T56 -->|Tipo A| C56A[Carrosel: Figma + Claude + Midjourney]
+    T56 -->|Tipo B| C56B[Reel: CapCut]
+    T56 -->|Tipo C| C56C[Material Digital: Claude + Vercel]
+    C56A --> END56([Drive + ClickUp])
+    C56B --> END56
+    C56C --> END56
+  end
+
+  subgraph SOP57 [SOP57 - Prompts de IA]
+    D57([Tarefa sem prompt ou queda de qualidade]) --> S57A[Definir funcao, input e output]
+    S57A --> S57B[Estruturar prompt]
+    S57B --> S57C[Testar com 2 casos reais]
+    S57C --> Q57{Output consistente?}
+    Q57 -->|Nao| S57B
+    Q57 -->|Sim| END57([Salvar PC + Drive])
+  end
+
+  subgraph SOP58 [SOP58 - Conteudo Visual com IA]
+    D58([Demanda de visual]) --> T58{Qual tipo?}
+    T58 -->|Tipo A| C58A[Motion: Higgsfield]
+    T58 -->|Tipo B| C58B[Imagem: Midjourney]
+    T58 -->|Tipo C| C58C[Reel IA: Higgsfield]
+    C58A --> END58([Drive + ClickUp])
+    C58B --> END58
+    C58C --> END58
+  end
+
+  subgraph SOP59 [SOP59 - Guias e Ferramentas]
+    D59([Demanda de guia ou ferramenta]) --> T59{Qual tipo?}
+    T59 -->|Tipo A| C59A[Guia HTML interativo]
+    T59 -->|Tipo B| C59B[Ferramenta funcional]
+    C59A --> END59([Link + ClickUp])
+    C59B --> END59
+  end
