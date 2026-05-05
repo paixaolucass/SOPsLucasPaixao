@@ -572,10 +572,15 @@
     .switcher-btns { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; width:100%; }
     .switcher-btn {
       padding:0.75rem 2rem; border-radius:8px; border:2px solid var(--brand-atmos);
-      font-family:var(--font-body); font-size:0.85rem; font-weight:700; cursor:pointer; transition:all 0.15s;
+      font-family:var(--font-body); font-size:0.85rem; font-weight:700; cursor:pointer;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background 0.15s;
     }
     .switcher-btn.on  { background:var(--brand-atmos); color:var(--neutral-black); }
     .switcher-btn.off { background:transparent; color:var(--brand-antar); }
+    .switcher-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 24px oklch(0.779 0.08 212.242 / 0.35);
+    }
     .dl-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:1rem; max-width:600px; }
     .dl-card {
       background:var(--neutral-900); border:1px solid var(--border); border-radius:8px;
@@ -1476,7 +1481,7 @@ E pra quem não viu, recomendo demais assistir… teve até proposta ao vivo �
 
       <!-- Banner leia a documentação -->
       <div style="margin:1.25rem auto 0;max-width:640px;background:oklch(0.779 0.08 212.242 / 0.07);border:1px solid oklch(0.779 0.08 212.242 / 0.22);border-radius:var(--radius-sm);padding:1rem 1.25rem;display:flex;align-items:center;gap:0.875rem;text-align:left;">
-        <span style="font-size:1.25rem;flex-shrink:0;">📖</span>
+        <svg style="width:22px;height:22px;flex-shrink:0;opacity:0.85;" viewBox="0 0 34.14 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1415 34C14.7474 34 12.513 33.5593 10.4381 32.6778C8.36326 31.7963 6.54377 30.5843 4.97965 29.0417C3.41553 27.4676 2.18658 25.6574 1.29279 23.6111C0.430931 21.5333 0 19.3139 0 16.9528C0 14.5917 0.430931 12.388 1.29279 10.3417C2.18658 8.29537 3.39957 6.50093 4.93177 4.95833C6.49589 3.38426 8.29942 2.17222 10.3423 1.32222C12.4172 0.440741 14.6517 0 17.0457 0C19.4398 0 21.6583 0.440741 23.7012 1.32222C25.7761 2.17222 27.5956 3.38426 29.1597 4.95833C30.7238 6.50093 31.9368 8.31111 32.7987 10.3889C33.6924 12.4352 34.1393 14.6389 34.1393 17C34.1393 19.3611 33.6924 21.5806 32.7987 23.6583C31.9368 25.7046 30.7238 27.4991 29.1597 29.0417C27.6275 30.5843 25.824 31.7963 23.7491 32.6778C21.7062 33.5593 19.5036 34 17.1415 34ZM17.0457 28.8056C19.3121 28.8056 21.2912 28.3019 22.983 27.2944C24.7067 26.287 26.0474 24.9019 27.005 23.1389C27.9946 21.3444 28.4893 19.2824 28.4893 16.9528C28.4893 15.2213 28.2021 13.6472 27.6275 12.2306C27.0848 10.7824 26.3028 9.53889 25.2813 8.5C24.2598 7.42963 23.0468 6.61111 21.6423 6.04445C20.2697 5.47778 18.7375 5.19444 17.0457 5.19444C14.8113 5.19444 12.8322 5.69815 11.1085 6.70556C9.41665 7.68148 8.07597 9.05093 7.08642 10.8139C6.1288 12.5769 5.64999 14.6231 5.64999 16.9528C5.64999 18.6843 5.92131 20.2898 6.46397 21.7694C7.03854 23.2176 7.8206 24.4611 8.81015 25.5C9.83162 26.5389 11.0446 27.3574 12.4491 27.9556C13.8536 28.5222 15.3858 28.8056 17.0457 28.8056Z" fill="var(--brand-atmos)"/></svg>
         <div style="flex:1;">
           <p style="font-size:0.775rem;color:var(--neutral-300);margin:0;line-height:1.55;">Este fluxograma é um <strong style="color:var(--neutral-100);">resumo visual</strong> dos processos. Para SLAs, checklists, prompts e contexto completo, a documentação tem tudo isso com muito mais detalhe.</p>
         </div>
