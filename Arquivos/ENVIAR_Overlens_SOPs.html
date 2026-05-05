@@ -1845,8 +1845,10 @@ E pra quem não viu, recomendo demais assistir… teve até proposta ao vivo �
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'SOPs_Overlens_Fluxograma.mmd';
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(a.href);
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 200);
   }
 
   function goToSOP(anchor) {
@@ -1961,8 +1963,13 @@ E pra quem não viu, recomendo demais assistir… teve até proposta ao vivo �
   function downloadSVG() {
     var svg = _genSVG();
     var blob = new Blob([svg], {type:'image/svg+xml'});
-    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-    a.download = 'SOPs_Overlens_Fluxograma.svg'; a.click(); URL.revokeObjectURL(a.href);
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'SOPs_Overlens_Fluxograma.svg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 200);
   }
 
   function downloadPNG() {
