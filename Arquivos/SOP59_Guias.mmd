@@ -1,0 +1,19 @@
+flowchart TD
+    A([🛠️ Demanda de guia ou ferramenta digital]):::trigger
+    B{Qual tipo de material?}:::decision
+
+    C[📄 Guia Interativo HTML]
+    C2[Tema + objetivo → estruturar com Claude\nHTML com design system Overlens\niterar → deploy Vercel]
+
+    D[⚙️ Ferramenta Funcional]
+    D2[Problema a resolver → Claude Code\nAntigravity/Codex → desenvolver\ndeploy Vercel → documentar]
+
+    F([✅ Link entregue + Evidência no ClickUp]):::done
+
+    A --> B
+    B -->|Tipo A| C --> C2 --> F
+    B -->|Tipo B| D --> D2 --> F
+
+    classDef trigger fill:#1a2744,stroke:#3b82f6,color:#93c5fd
+    classDef decision fill:#2a1f3d,stroke:#a855f7,color:#d8b4fe
+    classDef done fill:#14291e,stroke:#22c55e,color:#86efac

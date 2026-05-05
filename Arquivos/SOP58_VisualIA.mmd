@@ -1,0 +1,23 @@
+flowchart TD
+    A([🎨 Demanda de conteúdo visual]):::trigger
+    B{Qual tipo de visual?}:::decision
+
+    C[🎞️ Motion — Higgsfield]
+    C2[Material base → Higgsfield motion control\navaliar → CapCut se necessário → 9:16]
+
+    D[🖼️ Imagem — Midjourney]
+    D2[Prompt estilo Overlens → Midjourney\nselecionar → estático Figma ou movimento CapCut]
+
+    E[🎬 Reel IA — Higgsfield]
+    E2[Definir conceito → explorar Higgsfield\ngerar → iterar → CapCut se necessário → 9:16]
+
+    F([✅ Drive + Evidência no ClickUp]):::done
+
+    A --> B
+    B -->|Tipo A| C --> C2 --> F
+    B -->|Tipo B| D --> D2 --> F
+    B -->|Tipo C| E --> E2 --> F
+
+    classDef trigger fill:#1a2744,stroke:#3b82f6,color:#93c5fd
+    classDef decision fill:#2a1f3d,stroke:#a855f7,color:#d8b4fe
+    classDef done fill:#14291e,stroke:#22c55e,color:#86efac

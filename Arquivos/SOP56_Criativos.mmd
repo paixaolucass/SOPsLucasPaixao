@@ -1,0 +1,23 @@
+flowchart TD
+    A([📋 Demanda de criativo\nClickUp · daily · backlog]):::trigger
+    B{Qual tipo de peça?}:::decision
+
+    C[🎠 Carrosel]
+    C2[Tema → textos Claude\ntemplate Figma → imagens Midjourney\nmontar Figma → revisar → exportar]
+
+    D[🎬 Reel]
+    D2[Definir perfil — Overlens ou Ruan Braz\nvídeo Ruan ou gravação própria\nmodelizar formato → CapCut → exportar 9:16]
+
+    E[🌐 Material Digital]
+    E2[Definir tipo → Claude — Antigravity/Codex\niterar → deploy Vercel → verificar link]
+
+    F([✅ Drive + Evidência no ClickUp]):::done
+
+    A --> B
+    B -->|Tipo A| C --> C2 --> F
+    B -->|Tipo B| D --> D2 --> F
+    B -->|Tipo C| E --> E2 --> F
+
+    classDef trigger fill:#1a2744,stroke:#3b82f6,color:#93c5fd
+    classDef decision fill:#2a1f3d,stroke:#a855f7,color:#d8b4fe
+    classDef done fill:#14291e,stroke:#22c55e,color:#86efac

@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOPs do Squad de Conteúdo - Overlens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --neutral-100: oklch(0.961 0 0);
+      --neutral-200: oklch(0.928 0 0);
+      --neutral-300: oklch(0.87 0 0);
+      --neutral-400: oklch(0.795 0 0);
+      --neutral-500: oklch(0.719 0 0);
+      --neutral-600: oklch(0.475 0 0);
+      --neutral-700: oklch(0.371 0 0);
+      --neutral-800: oklch(0.309 0 0);
+      --neutral-900: oklch(0.244 0 0);
+      --neutral-950: oklch(0.173 0 0);
+      --neutral-black: oklch(0 0 0);
+      --neutral-white: oklch(1 0 0);
+      --brand-atmos:  oklch(0.779 0.08 212.242);
+      --brand-kobold: oklch(0.477 0.116 243.144);
+      --brand-midori: oklch(0.485 0.053 172.79);
+      --brand-sahara: oklch(0.751 0.103 73.229);
+      --brand-antar:  oklch(0.893 0.04 216.484);
+      --background: var(--neutral-black);
+      --foreground: var(--neutral-100);
+      --card: var(--neutral-900);
+      --card-secondary: var(--neutral-800);
+      --border: oklch(1 0 0 / 10%);
+      --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
+      --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --radius-sm: 0.75rem;
+      --radius-md: 1rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page ── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .logo-wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .logo-icon {
+      width: 30px; height: 30px;
+      background: var(--brand-kobold);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-icon svg { width: 16px; height: 16px; }
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--neutral-white);
+    }
+    .doc-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2rem; font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.15;
+      color: var(--neutral-white);
+      margin-bottom: 0.75rem;
+    }
+    .doc-meta {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .doc-meta-item {
+      font-size: 0.825rem; color: var(--neutral-500);
+      display: flex; gap: 0.35rem;
+    }
+    .doc-meta-item strong { color: var(--neutral-300); font-weight: 500; }
+    .doc-context {
+      margin-top: 1rem;
+      padding: 0.875rem 1.125rem;
+      background: var(--neutral-900);
+      border-left: 3px solid var(--brand-kobold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.875rem; color: var(--neutral-400); line-height: 1.5;
+    }
+
+    /* ── Two-column layout ── */
+    .doc-layout {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .doc-sidebar {
+      position: sticky;
+      top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .doc-main { min-width: 0; }
+
+    /* ── Sidebar governance ── */
+    .gov-block {
+      background: var(--neutral-950);
+      border: 1px solid oklch(0.477 0.116 243.144 / 25%);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.125rem;
+    }
+    .gov-block-title {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--brand-kobold); margin-bottom: 0.75rem;
+    }
+    .gov-row {
+      display: flex; flex-direction: column;
+      gap: 0.15rem; margin-bottom: 0.5rem;
+    }
+    .gov-row:last-of-type { margin-bottom: 0; }
+    .gov-label { font-size: 0.68rem; color: oklch(0.475 0 0); font-weight: 500; }
+    .gov-value { font-size: 0.8rem; color: var(--neutral-300); }
+    .gov-note {
+      font-size: 0.72rem; color: oklch(0.475 0 0); line-height: 1.5;
+      margin-top: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .gov-note strong { color: oklch(0.719 0 0); }
+
+    /* ── Sidebar TOC ── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.125rem;
+    }
+    .toc-title {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: oklch(0.475 0 0); margin-bottom: 0.75rem;
+    }
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      color: var(--neutral-400); text-decoration: none;
+      font-size: 0.78rem; line-height: 1.4;
+      padding: 0.25rem 0.375rem;
+      border-radius: 5px;
+      transition: all 0.12s;
+    }
+    .toc a:hover { color: var(--neutral-100); background: oklch(1 0 0 / 4%); }
+    .toc a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: var(--font-mono); font-size: 0.62rem;
+      color: oklch(0.371 0 0); min-width: 1.5rem; flex-shrink: 0;
+    }
+    .toc-sep {
+      height: 1px; background: var(--border); margin: 0.5rem 0;
+    }
+    .toc-part {
+      font-family: var(--font-mono); font-size: 0.58rem;
+      font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: oklch(0.371 0 0);
+      padding: 0.2rem 0.375rem; margin-top: 0.25rem;
+    }
+
+    /* ── Part headers ── */
+    .part-header {
+      display: flex; align-items: center; gap: 0.875rem;
+      margin-bottom: 1.5rem; padding-bottom: 0.875rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .part-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--brand-kobold);
+      background: oklch(0.477 0.116 243.144 / 12%);
+      border: 1px solid oklch(0.477 0.116 243.144 / 30%);
+      padding: 0.2rem 0.5rem; border-radius: 4px; white-space: nowrap;
+    }
+    .part-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem; font-weight: 600;
+      letter-spacing: -0.03em; color: var(--neutral-white);
+    }
+    .part-intro {
+      font-size: 0.825rem; color: oklch(0.719 0 0);
+      margin-bottom: 1.75rem; margin-top: -1rem;
+    }
+
+    /* ── SOP Card ── */
+    .sop-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .sop-title-block {
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sop-number-row {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;
+    }
+    .sop-number {
+      font-family: var(--font-mono);
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--neutral-white);
+      background: var(--brand-kobold);
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+    }
+    .status-new {
+      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: oklch(0.485 0.053 172.79);
+      background: oklch(0.485 0.053 172.79 / 12%);
+      border: 1px solid oklch(0.485 0.053 172.79 / 35%);
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+    }
+    .sop-label {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: oklch(0.475 0 0); margin-bottom: 0.3rem;
+    }
+    .sop-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.03em; color: var(--neutral-white);
+      line-height: 1.25; margin-bottom: 0.25rem;
+    }
+    .sop-subtitle { font-size: 0.825rem; color: oklch(0.719 0 0); margin-bottom: 0.5rem; }
+    .sop-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+    .sop-tag {
+      font-size: 0.7rem; color: var(--neutral-400);
+      background: var(--neutral-800); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.15rem 0.5rem;
+    }
+    .sop-tag.highlight {
+      color: var(--brand-atmos);
+      background: oklch(0.779 0.08 212.242 / 10%);
+      border-color: oklch(0.779 0.08 212.242 / 25%);
+    }
+
+    /* ── Two-column body inside cards ── */
+    .sop-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .sop-body-grid .sop-card-col { }
+
+    /* ── Section headings inside SOPs ── */
+    .sop-card h3 {
+      font-family: var(--font-heading);
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: -0.02em; color: var(--neutral-200);
+      margin: 1.25rem 0 0.6rem;
+    }
+    .sop-card h3:first-child { margin-top: 0; }
+    .sop-card h4 {
+      font-family: var(--font-heading);
+      font-size: 0.825rem; font-weight: 600;
+      color: var(--neutral-300); margin: 1rem 0 0.4rem;
+    }
+    .sop-card p {
+      font-size: 0.875rem; color: var(--neutral-300);
+      margin: 0.5rem 0; line-height: 1.65;
+    }
+    .sop-card ul, .sop-card ol {
+      padding-left: 1.2rem; margin: 0.4rem 0;
+    }
+    .sop-card li {
+      font-size: 0.875rem; color: var(--neutral-300);
+      margin-bottom: 0.3rem; line-height: 1.55;
+    }
+    .sop-card li strong { color: var(--neutral-100); font-weight: 600; }
+
+    /* ── Phase blocks ── */
+    .phase {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .phase-num {
+      flex-shrink: 0; width: 1.6rem; height: 1.6rem;
+      background: oklch(0.477 0.116 243.144 / 15%);
+      border: 1px solid oklch(0.477 0.116 243.144 / 35%);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+      color: var(--brand-kobold);
+    }
+    .phase-content { flex: 1; padding-top: 0.1rem; }
+    .phase-content h3 { margin: 0 0 0.4rem !important; font-size: 0.85rem !important; }
+
+    /* ── Callouts ── */
+    .callout {
+      display: flex; gap: 0.6rem;
+      padding: 0.75rem 0.875rem;
+      border-radius: var(--radius-sm);
+      margin: 0.6rem 0;
+      font-size: 0.825rem; line-height: 1.5;
+    }
+    .callout.warning {
+      background: oklch(0.751 0.103 73.229 / 10%);
+      border: 1px solid oklch(0.751 0.103 73.229 / 30%);
+      color: oklch(0.902 0.123 92.931);
+    }
+    .callout.info {
+      background: oklch(0.779 0.08 212.242 / 10%);
+      border: 1px solid oklch(0.779 0.08 212.242 / 30%);
+      color: var(--brand-antar);
+    }
+    .callout-icon { flex-shrink: 0; line-height: 1.4; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; margin: 0.75rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.825rem; }
+    thead th {
+      text-align: left; padding: 0.5rem 0.75rem;
+      font-family: var(--font-heading); font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: oklch(0.719 0 0); background: var(--neutral-800);
+      border-bottom: 1px solid var(--border);
+    }
+    thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    thead th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+    tbody td {
+      padding: 0.5rem 0.75rem; color: var(--neutral-300);
+      border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: oklch(1 0 0 / 2%); }
+    tbody td strong { color: var(--neutral-100); font-weight: 600; }
+    tbody td:first-child { color: var(--neutral-200); font-weight: 500; }
+
+    /* ── Code blocks ── */
+    pre {
+      background: var(--neutral-950); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.875rem 1rem;
+      overflow-x: auto; margin: 0.6rem 0;
+    }
+    pre code {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      color: var(--neutral-300); line-height: 1.7;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    code:not(pre code) {
+      font-family: var(--font-mono); font-size: 0.8em;
+      color: var(--brand-antar);
+      background: oklch(0.779 0.08 212.242 / 10%);
+      padding: 0.1em 0.35em; border-radius: 4px;
+    }
+
+    /* ── Checklists ── */
+    .checklist { list-style: none; padding-left: 0; margin: 0.4rem 0; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      padding: 0.25rem 0; color: var(--neutral-300); font-size: 0.825rem;
+    }
+    .checklist li::before {
+      content: ""; flex-shrink: 0;
+      width: 0.9rem; height: 0.9rem; margin-top: 0.2rem;
+      border: 1.5px solid oklch(0.475 0 0);
+      border-radius: 3px; background: transparent;
+    }
+    .checklist-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 1.25rem;
+    }
+
+    /* ── KPI grid ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.6rem; margin: 0.6rem 0;
+    }
+    .kpi-item {
+      background: var(--neutral-800); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.625rem 0.875rem;
+    }
+    .kpi-label { font-size: 0.68rem; color: oklch(0.719 0 0); margin-bottom: 0.15rem; }
+    .kpi-value {
+      font-family: var(--font-heading); font-size: 0.875rem;
+      font-weight: 600; color: var(--neutral-200);
+    }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+
+    /* ── Automation cards (Part 2) ── */
+    .automation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .automation-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.25rem 1.375rem;
+      position: relative; overflow: hidden;
+    }
+    .automation-card::before {
+      content: ""; position: absolute; inset: 0;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, oklch(0.477 0.116 243.144 / 5%) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .automation-num {
+      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--brand-kobold); margin-bottom: 0.3rem;
+    }
+    .automation-title {
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600;
+      letter-spacing: -0.02em; color: var(--neutral-white); margin-bottom: 0.6rem;
+    }
+    .automation-row {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 0.25rem 0.6rem; margin-bottom: 0.35rem; align-items: baseline;
+    }
+    .automation-row-label {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.02em;
+      color: oklch(0.719 0 0); white-space: nowrap;
+    }
+    .automation-row-value { font-size: 0.8rem; color: var(--neutral-300); line-height: 1.45; }
+    .impact-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.68rem; font-weight: 600;
+      color: oklch(0.485 0.053 172.79);
+      background: oklch(0.485 0.053 172.79 / 12%);
+      border: 1px solid oklch(0.485 0.053 172.79 / 30%);
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-top: 0.5rem;
+    }
+
+    /* ── IA usage table ── */
+    .ia-table thead th { color: var(--brand-atmos); }
+
+    /* ── Footer ── */
+    .doc-footer {
+      margin-top: 3rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .doc-footer p { font-size: 0.75rem; color: oklch(0.475 0 0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .page { padding: 1.5rem 1rem 4rem; }
+      .doc-header h1 { font-size: 1.5rem; }
+      .doc-layout { grid-template-columns: 1fr; }
+      .doc-sidebar { position: static; }
+      .sop-body-grid { grid-template-columns: 1fr; }
+      .automation-grid { grid-template-columns: 1fr; }
+      .checklist-2col { grid-template-columns: 1fr; }
+      .sop-card { padding: 1.125rem; }
+      .automation-card { padding: 1rem 1.125rem; }
+      .auto05-inner { grid-template-columns: 1fr !important; }
+      .auto05-templates { grid-template-columns: 1fr !important; }
+      .doc-footer { flex-direction: column; gap: 0.25rem; }
+    }
+    @media (max-width: 500px) {
+      .page { padding: 1rem 0.75rem 3rem; }
+      .doc-header h1 { font-size: 1.25rem; }
+      .sop-card { padding: 1rem; }
+      .sop-card h3 { font-size: 0.85rem !important; }
+      .phase { gap: 0.5rem; }
+      .phase-num { width: 1.4rem; height: 1.4rem; font-size: 0.6rem; }
+      pre { padding: 0.625rem 0.75rem; }
+      pre code { font-size: 0.68rem; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .doc-header h1 br { display: none; }
+      .sop-tag { font-size: 0.65rem; }
+    }
+    @media print {
+      body { background: white; color: black; }
+      .doc-sidebar { position: static; }
+      .sop-card, .automation-card { border: 1px solid #ccc; background: #fafafa; }
+    }
+
+    /* ── View Toggle ── */
+    .view-toggle { display:flex; gap:0.375rem; margin-top:1rem; }
+    .view-btn {
+      flex:1; padding:0.45rem 0.5rem;
+      border-radius:var(--radius-sm);
+      font-size:0.72rem; font-family:var(--font-body); font-weight:600;
+      cursor:pointer; border:1px solid var(--border);
+      background:transparent; color:var(--neutral-400); transition:all 0.15s;
+    }
+    .view-btn.active {
+      background:var(--brand-atmos); border-color:var(--brand-atmos); color:var(--neutral-black);
+    }
+
+    /* ── Flowchart View ── */
+    #flowchart-view { padding:2rem 1rem 4rem; }
+    .flow-header { text-align:center; margin-bottom:2.5rem; }
+    .flow-header h2 { font-family:var(--font-heading); font-size:1.3rem; font-weight:700; color:var(--neutral-100); margin:0 0 0.25rem; }
+    .flow-header p { font-size:0.8rem; color:var(--neutral-500); margin:0; }
+    .flow-section { margin-bottom:3rem; }
+    .flow-section-title {
+      font-family:var(--font-heading); font-size:0.68rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; color:var(--brand-atmos);
+      margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);
+    }
+    .flow-chart { display:flex; flex-direction:column; align-items:center; }
+    .flow-node {
+      background:var(--neutral-900); border:1px solid var(--border);
+      border-radius:8px; padding:0.6rem 1.25rem;
+      font-size:0.775rem; color:var(--neutral-200);
+      text-align:center; min-width:200px; max-width:340px; line-height:1.45;
+    }
+    .flow-node.trigger {
+      background:oklch(0.779 0.08 212.242 / 15%); border-color:var(--brand-atmos);
+      color:var(--brand-antar); border-radius:20px; font-weight:600;
+    }
+    .flow-node.end {
+      background:oklch(0.477 0.116 243.144 / 20%); border-color:var(--brand-kobold);
+      border-radius:20px; color:var(--neutral-300); font-weight:600;
+    }
+    .flow-node.decision {
+      background:oklch(0.751 0.103 73.229 / 12%); border-color:var(--brand-sahara);
+      color:oklch(0.902 0.123 92.931); font-weight:600; min-width:240px;
+    }
+    .flow-arrow {
+      height:22px; display:flex; align-items:center;
+      justify-content:center; color:var(--neutral-600); font-size:0.9rem;
+    }
+    .flow-parallel-note {
+      font-size:0.65rem; color:var(--neutral-600); font-style:italic; margin:2px 0 6px;
+    }
+    .flow-branch-row {
+      display:flex; gap:1rem; justify-content:center;
+      align-items:flex-start; width:100%;
+    }
+    .flow-branch-col { display:flex; flex-direction:column; align-items:center; flex:1; max-width:220px; }
+    .flow-branch-label {
+      font-size:0.63rem; font-weight:700; color:var(--brand-atmos);
+      text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; text-align:center;
+    }
+    .flow-sub { font-size:0.7rem; color:var(--neutral-500); margin-top:2px; }
+    .switcher-btns { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; width:100%; }
+    .switcher-btn {
+      padding:0.75rem 2rem; border-radius:8px; border:2px solid var(--brand-atmos);
+      font-family:var(--font-body); font-size:0.85rem; font-weight:700; cursor:pointer; transition:all 0.15s;
+    }
+    .switcher-btn.on  { background:var(--brand-atmos); color:var(--neutral-black); }
+    .switcher-btn.off { background:transparent; color:var(--brand-antar); }
+    .dl-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:1rem; max-width:600px; }
+    .dl-card {
+      background:var(--neutral-900); border:1px solid var(--border); border-radius:8px;
+      padding:0.875rem 1rem; text-align:left;
+    }
+    .dl-card-title { font-size:0.8rem; font-weight:700; color:var(--neutral-100); margin-bottom:0.25rem; }
+    .dl-card-desc { font-size:0.7rem; color:var(--neutral-500); line-height:1.45; margin-bottom:0.6rem; }
+    .dl-btn {
+      display:inline-block; padding:0.4rem 0.9rem; border-radius:6px;
+      border:1px solid var(--brand-atmos); background:transparent;
+      color:var(--brand-antar); font-size:0.72rem; font-weight:600;
+      font-family:var(--font-body); cursor:pointer; transition:all 0.15s;
+    }
+    .dl-btn:hover { background:var(--brand-atmos); color:var(--neutral-black); }
+    @media (max-width:700px) {
+      .flow-branch-row { flex-direction:column; align-items:center; }
+      .flow-branch-col { max-width:100%; width:100%; }
+      .switcher-btns { flex-direction:column; }
+      .switcher-btn { width:100%; text-align:center; }
+      .dl-grid { grid-template-columns:1fr; }
+    }
+
+    /* ─ Background ambient blobs (necessários para backdrop-filter ter algo pra desfocar) ─ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80vw 65vh at 7% 10%,  oklch(0.779 0.08 212.242 / 0.13) 0%, transparent 62%),
+        radial-gradient(ellipse 70vw 75vh at 94% 58%, oklch(0.477 0.116 243.144 / 0.11) 0%, transparent 62%),
+        radial-gradient(ellipse 55vw 45vh at 42% 98%, oklch(0.751 0.103 73.229 / 0.07) 0%, transparent 62%);
+    }
+
+    /* ─ Liquid glass: SOP cards ─ */
+    .sop-card {
+      background: oklch(1 0 0 / 0.04);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-color: oklch(1 0 0 / 0.09);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.22),
+        inset 0 -1px 0 oklch(0 0 0 / 0.18),
+        0 8px 40px oklch(0 0 0 / 0.42),
+        0 2px 8px oklch(0 0 0 / 0.22);
+    }
+
+    /* ─ Liquid glass: automation cards ─ */
+    .automation-card {
+      background: oklch(0.477 0.116 243.144 / 0.06);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-color: oklch(1 0 0 / 0.09);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.20),
+        inset 0 -1px 0 oklch(0 0 0 / 0.15),
+        0 6px 30px oklch(0 0 0 / 0.42);
+    }
+
+    /* ─ Liquid glass: sidebar ─ */
+    .toc {
+      background: oklch(1 0 0 / 0.03);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-color: oklch(1 0 0 / 0.08);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.16),
+        0 4px 24px oklch(0 0 0 / 0.40);
+    }
+    .gov-block {
+      background: oklch(0.477 0.116 243.144 / 0.08);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.16),
+        0 4px 24px oklch(0 0 0 / 0.38);
+    }
+
+    /* ─ Liquid glass: KPI chips ─ */
+    .kpi-item {
+      background: oklch(1 0 0 / 0.04);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-color: oklch(1 0 0 / 0.08);
+      box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.14);
+    }
+
+    /* ─ Liquid glass: callouts ─ */
+    .callout {
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.12);
+    }
+
+    /* ─ Liquid glass: flowchart nodes ─ */
+    .flow-node {
+      backdrop-filter: blur(16px) saturate(150%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+      box-shadow:
+        inset 0 1px 0 oklch(1 0 0 / 0.18),
+        0 3px 12px oklch(0 0 0 / 0.36);
+    }
+
+    /* ─ Liquid glass: download cards ─ */
+    .dl-card {
+      background: oklch(1 0 0 / 0.05);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-color: oklch(1 0 0 / 0.12);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.20),
+        0 4px 20px oklch(0 0 0 / 0.36);
+    }
+
+    /* ─ Liquid glass: switcher buttons ─ */
+    .switcher-btn.off {
+      background: oklch(1 0 0 / 0.05);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      box-shadow: inset 0 1.5px 0 oklch(1 0 0 / 0.22);
+    }
+    .switcher-btn.on {
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.38),
+        inset 0 -1px 0 oklch(0 0 0 / 0.15),
+        0 4px 20px oklch(0.779 0.08 212.242 / 0.45);
+    }
+
+    /* ─ Liquid glass: hover smooth lift ─ */
+    .sop-card,
+    .automation-card,
+    .dl-card,
+    .flow-node {
+      transition:
+        transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.28s ease;
+    }
+
+    .sop-card:hover,
+    .automation-card:hover {
+      transform: translateY(-3px) scale(1.005);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.30),
+        inset 0 -1px 0 oklch(0 0 0 / 0.18),
+        0 14px 50px oklch(0 0 0 / 0.54),
+        0 4px 16px oklch(0 0 0 / 0.26),
+        0 0 0 1px oklch(0.779 0.08 212.242 / 0.14);
+    }
+
+    .dl-card:hover {
+      transform: translateY(-3px) scale(1.005);
+      box-shadow:
+        inset 0 1.5px 0 oklch(1 0 0 / 0.28),
+        0 10px 36px oklch(0 0 0 / 0.50),
+        0 0 0 1px oklch(0.779 0.08 212.242 / 0.12);
+    }
+
+    .flow-node:hover {
+      transform: translateY(-2px) scale(1.025);
+      box-shadow:
+        inset 0 1px 0 oklch(1 0 0 / 0.26),
+        0 8px 28px oklch(0 0 0 / 0.48);
+    }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="logo-wordmark" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;" title="Voltar ao topo">
+      <svg style="height:22px;width:auto;display:block;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 264 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Overlens"><path d="M17.1415 34C14.7474 34 12.513 33.5593 10.4381 32.6778C8.36326 31.7963 6.54377 30.5843 4.97965 29.0417C3.41553 27.4676 2.18658 25.6574 1.29279 23.6111C0.430931 21.5333 0 19.3139 0 16.9528C0 14.5917 0.430931 12.388 1.29279 10.3417C2.18658 8.29537 3.39957 6.50093 4.93177 4.95833C6.49589 3.38426 8.29942 2.17222 10.3423 1.32222C12.4172 0.440741 14.6517 0 17.0457 0C19.4398 0 21.6583 0.440741 23.7012 1.32222C25.7761 2.17222 27.5956 3.38426 29.1597 4.95833C30.7238 6.50093 31.9368 8.31111 32.7987 10.3889C33.6924 12.4352 34.1393 14.6389 34.1393 17C34.1393 19.3611 33.6924 21.5806 32.7987 23.6583C31.9368 25.7046 30.7238 27.4991 29.1597 29.0417C27.6275 30.5843 25.824 31.7963 23.7491 32.6778C21.7062 33.5593 19.5036 34 17.1415 34ZM17.0457 28.8056C19.3121 28.8056 21.2912 28.3019 22.983 27.2944C24.7067 26.287 26.0474 24.9019 27.005 23.1389C27.9946 21.3444 28.4893 19.2824 28.4893 16.9528C28.4893 15.2213 28.2021 13.6472 27.6275 12.2306C27.0848 10.7824 26.3028 9.53889 25.2813 8.5C24.2598 7.42963 23.0468 6.61111 21.6423 6.04445C20.2697 5.47778 18.7375 5.19444 17.0457 5.19444C14.8113 5.19444 12.8322 5.69815 11.1085 6.70556C9.41665 7.68148 8.07597 9.05093 7.08642 10.8139C6.1288 12.5769 5.64999 14.6231 5.64999 16.9528C5.64999 18.6843 5.92131 20.2898 6.46397 21.7694C7.03854 23.2176 7.8206 24.4611 8.81015 25.5C9.83162 26.5389 11.0446 27.3574 12.4491 27.9556C13.8536 28.5222 15.3858 28.8056 17.0457 28.8056Z" fill="var(--fill-0, white)"/><path d="M226.573 34C223.924 34 221.673 33.5278 219.822 32.5833C217.97 31.6389 216.31 30.2537 214.842 28.4278L218.577 24.7444C219.502 26.0667 220.604 27.1056 221.881 27.8611C223.157 28.5852 224.785 28.9472 226.764 28.9472C228.616 28.9472 230.084 28.5694 231.17 27.8139C232.287 27.0583 232.845 26.0194 232.845 24.6972C232.845 23.5954 232.558 22.6981 231.984 22.0056C231.409 21.313 230.643 20.7463 229.685 20.3056C228.76 19.8333 227.722 19.4241 226.573 19.0778C225.456 18.7 224.323 18.2907 223.173 17.85C222.056 17.3778 221.019 16.7954 220.061 16.1028C219.135 15.4102 218.385 14.513 217.811 13.4111C217.236 12.3093 216.949 10.9083 216.949 9.20833C216.949 7.25648 217.428 5.6037 218.385 4.25C219.375 2.86482 220.7 1.81019 222.359 1.08611C224.019 0.362037 225.871 0 227.914 0C230.116 0 232.079 0.425 233.803 1.275C235.559 2.125 236.979 3.21111 238.064 4.53333L234.33 8.21667C233.372 7.1463 232.367 6.35926 231.313 5.85556C230.292 5.32037 229.111 5.05278 227.77 5.05278C226.11 5.05278 224.801 5.38333 223.844 6.04445C222.918 6.70556 222.455 7.63426 222.455 8.83056C222.455 9.83796 222.742 10.6565 223.317 11.2861C223.892 11.8843 224.642 12.4037 225.567 12.8444C226.525 13.2537 227.562 13.6472 228.68 14.025C229.829 14.4028 230.962 14.8278 232.079 15.3C233.228 15.7722 234.266 16.3861 235.192 17.1417C236.149 17.8657 236.915 18.8102 237.49 19.975C238.064 21.1398 238.352 22.6037 238.352 24.3667C238.352 27.3259 237.282 29.6713 235.144 31.4028C233.037 33.1343 230.18 34 226.573 34Z" fill="var(--fill-0, white)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M253.562 20.7778C251.551 20.7778 249.747 20.3213 248.151 19.4083C246.587 18.4639 245.358 17.2046 244.464 15.6306C243.571 14.0565 243.124 12.2935 243.124 10.3417C243.124 8.38982 243.555 6.64259 244.417 5.1C245.31 3.52593 246.539 2.28241 248.103 1.36944C249.668 0.456481 251.471 0 253.514 0C255.557 0 257.36 0.456481 258.925 1.36944C260.521 2.28241 261.766 3.52593 262.659 5.1C263.553 6.64259 264 8.38982 264 10.3417C264 12.2935 263.553 14.0722 262.659 15.6778C261.766 17.2519 260.537 18.4954 258.972 19.4083C257.408 20.3213 255.605 20.7778 253.562 20.7778ZM253.514 19.2667C255.27 19.2667 256.802 18.8731 258.111 18.0861C259.451 17.2991 260.505 16.2287 261.271 14.875C262.037 13.5213 262.42 12.0102 262.42 10.3417C262.42 8.67315 262.037 7.17778 261.271 5.85556C260.505 4.53333 259.451 3.4787 258.111 2.69167C256.802 1.90463 255.27 1.51111 253.514 1.51111C251.79 1.51111 250.258 1.90463 248.917 2.69167C247.609 3.4787 246.571 4.53333 245.805 5.85556C245.071 7.17778 244.704 8.67315 244.704 10.3417C244.704 12.0102 245.071 13.5213 245.805 14.875C246.571 16.2287 247.609 17.2991 248.917 18.0861C250.258 18.8731 251.79 19.2667 253.514 19.2667Z" fill="var(--fill-0, white)"/><path d="M35.5189 0.472222L49.0693 33.5278H52.8998L66.546 0.472222H60.6566L51.0372 24.5938L41.5041 0.472222H35.5189Z" fill="var(--fill-0, white)"/><path d="M105.097 19.5028H106.516L117.977 33.5278H124.92L113.159 19.4705C114.847 19.3619 116.357 18.9791 117.689 18.3222C119.286 17.5352 120.514 16.4333 121.376 15.0167C122.27 13.6 122.717 11.9315 122.717 10.0111C122.717 8.18518 122.27 6.56389 121.376 5.14722C120.514 3.69908 119.286 2.56574 117.689 1.74722C116.093 0.897222 114.242 0.472222 112.135 0.472222H99.5904V33.5278H105.097V19.5028ZM105.097 15.0167V5.19444H111.896C113.588 5.19444 114.896 5.66667 115.822 6.61111C116.748 7.55556 117.211 8.72037 117.211 10.1056C117.211 11.6481 116.732 12.8602 115.774 13.7417C114.849 14.5917 113.54 15.0167 111.848 15.0167H105.097Z" fill="var(--fill-0, white)"/><path d="M129.002 33.5278V0.472222H134.508V28.5694H150.309V33.5278H129.002Z" fill="var(--fill-0, white)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M155.327 0.472222V33.5278H177.879V28.5694H160.833V19.0306H176.251V14.2611H160.833V5.43056H177.64V0.472222H155.327Z" fill="var(--fill-0, white)"/><path d="M205.116 23.282L187.4 0.472222H183.57V33.5278H189.076V10.718L206.792 33.5278H210.623V0.472222H205.116V23.282Z" fill="var(--fill-0, white)"/><path d="M250.067 4.76944V15.6778H251.886V11.05H252.336L256.1 15.6778H258.398L254.488 11.0413C255.372 10.9899 256.1 10.7094 256.674 10.2C257.345 9.63333 257.68 8.86204 257.68 7.88611C257.68 6.97315 257.345 6.23333 256.674 5.66667C256.036 5.06852 255.206 4.76944 254.184 4.76944H250.067ZM251.886 6.32778H254.089C254.631 6.32778 255.062 6.48518 255.381 6.8C255.701 7.11481 255.86 7.49259 255.86 7.93333C255.86 8.43704 255.701 8.83056 255.381 9.11389C255.062 9.39722 254.631 9.53889 254.089 9.53889H251.886V6.32778Z" fill="var(--fill-0, white)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M71.3479 0.472222V33.5278H93.9V28.5694H76.8543V19.0306H92.272V14.2611H76.8543V5.43056H93.6606V0.472222H75.1305H71.3479Z" fill="var(--fill-0, white)"/></g></svg>
+    </div>
+    <h1>SOPs do Squad de Conteúdo<br>Overlens</h1>
+    <div class="doc-meta">
+      <span class="doc-meta-item"><strong>Responsável</strong> Lucas Paixão</span>
+      <span class="doc-meta-item"><strong>Data</strong> 2026-04-30</span>
+      <span class="doc-meta-item"><strong>Área</strong> Squad de Conteúdo · Vanguarda</span>
+    </div>
+    <p class="doc-context">Revisão de área solicitada na reunião de processos - novos SOPs documentados + proposta de automação com IA.</p>
+  </header>
+
+  <!-- VIEW SWITCHER BANNER -->
+  <div style="border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;text-align:center;margin-top:1.5rem;">
+    <p style="font-family:var(--font-heading);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-atmos);margin:0 0 0.75rem;">Escolha como quer visualizar</p>
+    <div class="switcher-btns">
+      <button onclick="setView('doc')" id="banner-btn-doc" class="switcher-btn on">Documento completo</button>
+      <button onclick="setView('flow')" id="banner-btn-flow" class="switcher-btn off">Fluxograma visual</button>
+    </div>
+    <p style="font-size:0.7rem;color:var(--neutral-500);margin:0.6rem 0 0;max-width:460px;display:inline-block;line-height:1.5;">
+      <strong style="color:var(--neutral-300);">Documento</strong> tem detalhes, SLAs, checklists e contexto completo.
+      <strong style="color:var(--neutral-300);">Fluxograma</strong> mostra os mesmos processos em forma visual.
+    </p>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT -->
+  <div id="doc-layout" class="doc-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="doc-sidebar">
+
+      <div class="gov-block">
+        <div class="gov-block-title">SOP01 - Governança</div>
+        <div class="gov-row">
+          <span class="gov-label">Tipo</span>
+          <span class="gov-value">Novos SOPs + Proposta IA</span>
+        </div>
+        <div class="gov-row">
+          <span class="gov-label">Owner</span>
+          <span class="gov-value">Lucas Paixão</span>
+        </div>
+        <div class="gov-row">
+          <span class="gov-label">Aprovador</span>
+          <span class="gov-value">Ruan / Rafael Braz</span>
+        </div>
+        <div class="gov-row">
+          <span class="gov-label">Prazo</span>
+          <span class="gov-value">Até 2026-05-06</span>
+        </div>
+        <p class="gov-note">
+          Todos os SOPs são novos e <strong>aguardam aprovação</strong> para entrada no Drive e no arquivo oficial de processos da empresa.
+        </p>
+      </div>
+
+      <nav class="toc">
+        <div class="toc-title">Índice</div>
+        <div class="toc-part">Parte 1 - SOPs</div>
+        <ol>
+          <li><a href="#sop-vanguarda">Encontros da Vanguarda</a></li>
+          <li><a href="#sop-criativos">Carroseis, Reels e Materiais</a></li>
+          <li><a href="#sop-prompts">Prompts de IA</a></li>
+          <li><a href="#sop-visual">Conteúdo Visual com IA</a></li>
+          <li><a href="#sop-ferramentas">Guias e Ferramentas Digitais</a></li>
+        </ol>
+        <div class="toc-sep"></div>
+        <div class="toc-part">Parte 2 - Automação</div>
+        <ol start="6">
+          <li><a href="#automacao">Proposta de Automação com IA</a></li>
+        </ol>
+      </nav>
+
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="setView('doc')" id="btn-doc">Documento</button>
+        <button class="view-btn" onclick="setView('flow')" id="btn-flow">Fluxograma</button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="doc-main" id="doc-main">
+
+      <!-- PARTE 1 -->
+      <div class="part-header">
+        <span class="part-badge">Parte 1</span>
+        <h2>Novos SOPs Documentados</h2>
+      </div>
+      <p class="part-intro">Processos reais do meu dia a dia que não estavam formalizados no manual. Documentados no padrão SOP da empresa.</p>
+
+      <!-- SOP55 - Encontros Vanguarda -->
+      <section id="sop-vanguarda" class="sop-card">
+        <div class="sop-title-block">
+          <div class="sop-number-row" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span class="sop-number">SOP55</span>
+              <span class="status-new">Novo</span>
+            </div>
+            <button onclick="goToFlow('flow-sop55')" style="padding:0.25rem 0.65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--neutral-500);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-atmos)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-500)'">⬡ Ver fluxograma</button>
+          </div>
+          <div class="sop-label">SOP - Vanguarda</div>
+          <div class="sop-title">Processamento e Publicação de Encontros da Vanguarda</div>
+          <div class="sop-subtitle">Checkpoint (4ª) · Workshop (6ª) · Masterclass (mensal)</div>
+          <div class="sop-meta">
+            <span class="sop-tag">Owner: Lucas Paixão</span>
+            <span class="sop-tag">v1.0</span>
+            <span class="sop-tag">2026-04-30</span>
+            <span class="sop-tag highlight">Gatilho: Zoom processou e materiais disponíveis</span>
+          </div>
+        </div>
+
+        <h3>Visão geral</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Encontro</th><th>Dia</th><th>Thumb</th><th>Como pegar o nome</th></tr></thead>
+            <tbody>
+              <tr><td>Checkpoint</td><td>Toda quarta</td><td>3 thumbs fixas prontas</td><td>Fixo</td></tr>
+              <tr><td>Workshop</td><td>Toda sexta</td><td>Midjourney (prompt salvo)</td><td>Perguntar Matheus ou Ruan via Gather/WhatsApp</td></tr>
+              <tr><td>Masterclass</td><td>~1x/mês (variável)</td><td>Midjourney (prompt salvo)</td><td>Pegar na plataforma da Vanguarda</td></tr>
+              <tr><td>Feriado</td><td>Sem recorrência</td><td>Sem encontro</td><td>Sem encontro</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Ferramentas:</strong> Zoom · CapCut · Claude/ChatGPT · App Mapa Mental Vanguarda · HandBrake · Vimeo · Plataforma Vanguarda · WhatsApp · Midjourney</p>
+        <hr />
+
+        <div class="phase">
+          <div class="phase-num">01</div>
+          <div class="phase-content">
+            <h3>Coletar materiais do Zoom</h3>
+            <p>Aguardar o Zoom processar e disponibilizar:</p>
+            <ul>
+              <li>Gravação do encontro (vídeo completo)</li>
+              <li>Bate papo do encontro (arquivo de chat)</li>
+              <li>Transcrição do encontro</li>
+            </ul>
+            <div class="callout warning">
+              <span class="callout-icon">⚠</span>
+              <span>Não avançar sem a gravação e o bate papo. A transcrição é fortemente recomendada: agiliza o corte via IA e é obrigatória para gerar o RI. Sem ela, o corte pode ser feito manualmente no CapCut, mas o RI fica bloqueado.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">02</div>
+          <div class="phase-content">
+            <h3>Cortar início do encontro (CapCut + IA)</h3>
+            <p><strong>Objetivo:</strong> Remover o bate-papo inicial antes do conteúdo começar de verdade.</p>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span>Prompt de diagnóstico de início de encontro salvo na <a href="https://drive.google.com/drive/folders/13pdQXbPrcwyZFb9JMZf-5CfkaiOvrBJV?hl=pt-br" target="_blank" style="color:var(--brand-atmos);text-decoration:underline">pasta Prompts no Drive</a>, acesso restrito a @overlens.com.br.</span>
+            </div>
+            <ol>
+              <li>Abrir CapCut e importar a gravação completa.</li>
+              <li>Abrir o prompt de diagnóstico do Drive, colar a transcrição e rodar na IA para identificar o timestamp do início real do encontro.</li>
+              <li>Navegar até o timestamp, confirmar pela frase e cortar tudo antes.</li>
+              <li>Cortar a transcrição também (apagar linhas anteriores ao timestamp).</li>
+              <li>Exportar o vídeo cortado: <strong>1080p, 25fps, H.265 (HEVC)</strong> (configuração recomendada pelo CapCut, alinhada com a qualidade de gravação do Zoom, garantindo que nada se perde na exportação).</li>
+            </ol>
+            <p><strong>Saída:</strong> Vídeo cortado + transcrição cortada.</p>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">03</div>
+          <div class="phase-content">
+            <h3>Gerar Resumo Inteligente (RI) e Mapa Mental</h3>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span><strong>O que é o RI:</strong> o Resumo Inteligente é um resumo escrito completo do encontro (Checkpoint, Workshop ou Masterclass): tudo o que foi abordado, de forma organizada e resumida, em texto. É o material de referência do encontro para os membros. Prompt salvo na <a href="https://drive.google.com/drive/folders/13pdQXbPrcwyZFb9JMZf-5CfkaiOvrBJV?hl=pt-br" target="_blank" style="color:var(--brand-atmos);text-decoration:underline">pasta Prompts no Drive</a>, acesso restrito a @overlens.com.br.</span>
+            </div>
+            <ol>
+              <li>Abrir o prompt de RI do Drive, colar a transcrição cortada e rodar na IA para gerar o Resumo Inteligente estruturado.</li>
+              <li>Pegar o RI gerado e subir no <a href="https://github.com/paixaolucass/Mapa-Mental---Overlens" target="_blank" style="color:var(--brand-antar);text-decoration:underline"><strong>App Mapa Mental Vanguarda</strong></a> → app entrega o material do mapa mental.</li>
+            </ol>
+            <p><strong>Saída:</strong> RI texto final + mapa mental gerado pelo app.</p>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">04</div>
+          <div class="phase-content">
+            <h3>Subir materiais na plataforma (Vanguarda)</h3>
+            <ol>
+              <li>Acessar a plataforma da Vanguarda → aba de arquivos do encontro.</li>
+              <li>Subir os 3 materiais: transcrição cortada · mapa mental · bate papo (chat do Zoom).</li>
+              <li>Colar o RI na descrição do encontro.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">05</div>
+          <div class="phase-content">
+            <h3>Comprimir vídeo com HandBrake <em>(paralelo com Fase 6)</em></h3>
+            <ol>
+              <li>Abrir HandBrake → importar vídeo do CapCut → aplicar preset <strong>1080p 25fps</strong> → iniciar (~1h). O preset mantém a mesma resolução e frame rate do Zoom/CapCut, reduzindo os GBs do arquivo sem perder qualidade visível.</li>
+              <li>Durante a compressão: avançar com a thumbnail (Fase 6).</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">06</div>
+          <div class="phase-content">
+            <h3>Criar Thumbnail <em>(paralelo com HandBrake)</em></h3>
+            <p><strong>Checkpoint:</strong> selecionar 1 das 3 thumbs fixas prontas.</p>
+            <p><strong>Workshop / Masterclass:</strong> pegar o nome do encontro → usar o prompt fixo de thumbnail salvo no Figma → gerar no Midjourney → selecionar e baixar a capa.</p>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">07</div>
+          <div class="phase-content">
+            <h3>Upload no Vimeo</h3>
+            <ol>
+              <li>Aguardar HandBrake concluir → acessar Vimeo → fazer upload.</li>
+              <li>Enquanto renderiza: trocar o nome do vídeo + subir a thumbnail.</li>
+              <li>Aguardar renderização completa → copiar o link.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">08</div>
+          <div class="phase-content">
+            <h3>Publicar e avisar</h3>
+            <ol>
+              <li>Acessar a plataforma da Vanguarda → colar link do Vimeo → conferir checklist → publicar.</li>
+              <li>Avisar no WhatsApp da Vanguarda com o link.</li>
+            </ol>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="sop-body-grid">
+          <div>
+            <h3>SLAs</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Fase</th><th>Tempo</th></tr></thead>
+                <tbody>
+                  <tr><td>Fase 1 - Aguardar Zoom</td><td>1h a 3h (variável)</td></tr>
+                  <tr><td>Fase 2 - Corte + IA + Exportar CapCut</td><td>~1h a 1h10min</td></tr>
+                  <tr><td>Fase 3 - RI + Mapa Mental</td><td>~20min</td></tr>
+                  <tr><td>Fase 4 - Upload materiais</td><td>~10min</td></tr>
+                  <tr><td>Fase 5 - HandBrake</td><td>~1h a 1h30min</td></tr>
+                  <tr><td>Fase 6 - Thumbnail</td><td>~5–30min</td></tr>
+                  <tr><td>Fase 7 - Vimeo</td><td>~20min</td></tr>
+                  <tr><td>Fase 8 - Publicar + avisar</td><td>~10min</td></tr>
+                  <tr><td><strong>Total</strong></td><td><strong>3h a 5h</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>KPIs</h3>
+            <div class="kpi-grid">
+              <div class="kpi-item"><div class="kpi-label">Publicação no mesmo dia</div><div class="kpi-value">Meta 100%</div></div>
+              <div class="kpi-item"><div class="kpi-label">RI na descrição</div><div class="kpi-value">Meta 100%</div></div>
+              <div class="kpi-item"><div class="kpi-label">3 materiais na plataforma</div><div class="kpi-value">Meta 100%</div></div>
+              <div class="kpi-item"><div class="kpi-label">Aviso WhatsApp</div><div class="kpi-value">Meta 100%</div></div>
+            </div>
+          </div>
+          <div>
+            <h3>Checklist final antes de publicar</h3>
+            <ul class="checklist">
+              <li>Vídeo começa no momento certo?</li>
+              <li>RI na descrição do encontro?</li>
+              <li>Transcrição, mapa mental e bate papo na aba de arquivos?</li>
+              <li>Thumbnail correta?</li>
+              <li>Nome correto no Vimeo e na plataforma?</li>
+              <li>Link do Vimeo colado e funcionando?</li>
+              <li>Encontro publicado (não em rascunho)?</li>
+              <li>WhatsApp avisado?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOP56 - Criativos -->
+      <section id="sop-criativos" class="sop-card">
+        <div class="sop-title-block">
+          <div class="sop-number-row" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span class="sop-number">SOP56</span>
+              <span class="status-new">Novo</span>
+            </div>
+            <button onclick="goToFlow('flow-sop56')" style="padding:0.25rem 0.65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--neutral-500);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-atmos)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-500)'">⬡ Ver fluxograma</button>
+          </div>
+          <div class="sop-label">SOP - Conteúdo</div>
+          <div class="sop-title">Carroseis, Reels e Materiais Digitais</div>
+          <div class="sop-meta">
+            <span class="sop-tag">Owner: Lucas Paixão</span>
+            <span class="sop-tag">v1.1</span>
+            <span class="sop-tag">2026-04-30</span>
+            <span class="sop-tag highlight">Gatilho: Daily 10h · demanda ClickUp · autonomia backlog</span>
+          </div>
+        </div>
+
+        <p><strong>Ferramentas:</strong> Figma · Midjourney · Claude · CapCut · Antigravity/Codex · Vercel · Google Drive · ClickUp · <a href="https://github.com/paixaolucass/HOOKIQ" target="_blank" style="color:var(--brand-antar);text-decoration:underline">HOOKIQ</a></p>
+        <div class="callout info">
+          <span class="callout-icon">ℹ</span>
+          <span>O <strong>HOOKIQ</strong> é uma ferramenta da equipe que traz notícias de IA muito relevantes com DNA Overlens. Antes de criar um carrosel ou reel, vale acessar para ter uma base de pesquisa e inspiração, mesmo quando ainda não há um conteúdo fechado sobre o tema.</span>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-icon">⚠</span>
+          <span><strong>Competência central: Julgamento de marca.</strong> Este SOP exige uma habilidade que não está nos passos acima: o olhar treinado para identificar se uma peça está alinhada com o DNA da Overlens. Referência estética: Disney Tomorrowland (artístico, tecnológico, objetos inusitados/estranhos). Tokens de tipografia e espaçamento ficam nos pacotes <a href="https://www.npmjs.com/package/@overlens/legacy-foundations?activeTab=code" target="_blank" style="color:var(--brand-antar);text-decoration:underline">@overlens/legacy-foundations</a>, <a href="https://www.npmjs.com/package/@overlens/legacy-components?activeTab=dependencies" target="_blank" style="color:var(--brand-antar);text-decoration:underline">@overlens/legacy-components</a> e <a href="https://www.npmjs.com/package/@overlens/legacy-icons" target="_blank" style="color:var(--brand-antar);text-decoration:underline">@overlens/legacy-icons</a>. <strong>Onboarding obrigatório:</strong> alguém novo não deve executar este SOP sem antes ser modelado por Lucas em pelo menos uma peça de cada tipo. A primeira execução é sempre acompanhada.</span>
+        </div>
+
+        <div class="sop-body-grid">
+          <div>
+            <h3>Tipo A - Carrosel (Figma + Midjourney + Claude)</h3>
+            <ol>
+              <li>Identificar tema e objetivo do carrosel.</li>
+              <li><strong>Gerar textos com Claude:</strong> seguir a estrutura dos templates do Figma (hook, corpo, CTA). Tom científico, sem hype.</li>
+              <li><strong>Gerar imagens com Midjourney:</strong> usar prompt de estilo salvo para o tipo de peça.</li>
+              <li><strong>Montar no Figma:</strong> abrir template → substituir textos e imagens.</li>
+              <li>Revisar identidade visual, textos e progressão dos slides.</li>
+              <li>Exportar no formato definido pelo template do Figma → Drive + evidência no ClickUp.</li>
+            </ol>
+            <h3>Tipo B - Reel (CapCut)</h3>
+            <p>O material base pode ser vídeo fornecido pelo Ruan ou gravação própria. Em ambos os casos, o processo parte da modelagem de um formato de reel em alta de criadores internacionais e adapta o vídeo a essa estrutura.</p>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span>O reel pode ser para o perfil da <strong>Overlens</strong> ou para o perfil pessoal do <strong>Ruan Braz</strong>. Identificar qual antes de começar: a identidade visual, o tom e o estilo do conteúdo variam conforme o perfil. Para o Ruan Braz, o DNA é dele como criador, não necessariamente o da marca Overlens.</span>
+            </div>
+            <ol>
+              <li>Definir perfil de destino: Overlens ou Ruan Braz.</li>
+              <li>Definir origem do vídeo: receber do Ruan ou gravar o próprio reel.</li>
+              <li>Selecionar referência de formato a modelar.</li>
+              <li>CapCut: editar seguindo o formato modelado (cortes, ritmo, legendas, texto de abertura, identidade visual do perfil correto).</li>
+              <li>Exportar em 9:16 → Drive + evidência no ClickUp.</li>
+            </ol>
+            <h3>Tipo C - Materiais digitais: sites e guias (Claude + Vercel)</h3>
+            <ol>
+              <li>Definir tipo de material (guia, landing page, site de referência, etc.).</li>
+              <li>Gerar com Claude via <strong>Antigravity ou Codex</strong> → iterar até completo.</li>
+              <li>Deploy no <strong>Vercel</strong> → verificar link → ClickUp + avisar solicitante.</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Checklist</h3>
+            <h4>Carrosel</h4>
+            <ul class="checklist">
+              <li>Textos gerados (Claude)</li>
+              <li>Imagens geradas (Midjourney)</li>
+              <li>Template Figma usado</li>
+              <li>Formato correto exportado</li>
+              <li>Evidência no ClickUp</li>
+            </ul>
+            <h4>Reel</h4>
+            <ul class="checklist">
+              <li>Exportado em 9:16</li>
+              <li>CTA claro</li>
+              <li>Evidência no ClickUp</li>
+            </ul>
+            <h4>Material digital</h4>
+            <ul class="checklist">
+              <li>Deploy no Vercel funcionando</li>
+              <li>Link entregue</li>
+              <li>Evidência no ClickUp</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOP57 - Prompts -->
+      <section id="sop-prompts" class="sop-card">
+        <div class="sop-title-block">
+          <div class="sop-number-row" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span class="sop-number">SOP57</span>
+              <span class="status-new">Novo</span>
+            </div>
+            <button onclick="goToFlow('flow-sop57')" style="padding:0.25rem 0.65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--neutral-500);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-atmos)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-500)'">⬡ Ver fluxograma</button>
+          </div>
+          <div class="sop-label">SOP - IA e Processos</div>
+          <div class="sop-title">Criação e Gestão de Prompts de IA</div>
+          <div class="sop-meta">
+            <span class="sop-tag">Owner: Lucas Paixão</span>
+            <span class="sop-tag">v1.0</span>
+            <span class="sop-tag">2026-04-30</span>
+            <span class="sop-tag highlight">Gatilho: tarefa repetitiva sem prompt ou queda de qualidade</span>
+          </div>
+        </div>
+
+        <p><strong>Ferramentas:</strong> Claude / ChatGPT · Google Drive (pasta de prompts) · PC local</p>
+
+        <div class="sop-body-grid">
+          <div>
+            <h3>Passo a passo</h3>
+            <h4>1. Definir o que o prompt precisa fazer</h4>
+            <ul>
+              <li>Qual função? (ex: identificar início de encontro, gerar RI, gerar descrição de aula)</li>
+              <li>O que entra? (transcrição, texto bruto, contexto, briefing)</li>
+              <li>O que sai? (formato, nível de detalhe, tom, restrições)</li>
+            </ul>
+            <h4>2. Anatomia do prompt Overlens</h4>
+            <p>Os prompts da Overlens seguem uma estrutura de seções bem definidas. Cada seção serve a uma função específica:</p>
+            <ul>
+              <li><strong>Contexto interno:</strong> instruções que a IA usa internamente mas que não aparecem no output. Ex: "não mencione esse contexto no documento final".</li>
+              <li><strong>Papel:</strong> define quem a IA é e qual é sua função. Ex: "Você é um Editor de Conteúdo da Overlens. Sua função é transformar transcrição em descrição de aula."</li>
+              <li><strong>Regra de fidelidade:</strong> define o que a IA pode e não pode usar como fonte. Ex: "use exclusivamente a transcrição fornecida. Não invente, não extrapole."</li>
+              <li><strong>Proibições:</strong> lista explícita do que não pode aparecer no output. Ex: travessão, emojis, blocos introdutórios sem conteúdo, timestamps aproximados.</li>
+              <li><strong>Estrutura obrigatória:</strong> o esqueleto exato do documento que a IA deve gerar, com cabeçalhos, campos e ordem definidos.</li>
+              <li><strong>Regras de formatação e tom:</strong> parágrafos curtos, sem linguagem motivacional, técnico quando necessário, português BR fluido.</li>
+              <li><strong>Auditoria interna:</strong> checklist que a IA executa antes de entregar o output para verificar se atendeu todas as regras.</li>
+            </ul>
+            <h4>3. Testar com casos reais</h4>
+            <ul>
+              <li>Testar com pelo menos 2 casos (um denso, um simples)</li>
+              <li>Avaliar: formato correto · conteúdo fiel · tom alinhado · proibições respeitadas</li>
+              <li>Ajustar e retestar até output consistente</li>
+            </ul>
+            <h4>4. Salvar e versionar</h4>
+            <ul>
+              <li>Salvar no PC + Google Drive (pasta pessoal de prompts)</li>
+              <li>Nomenclatura: <code>Prompt - [Função] - v[número]</code></li>
+              <li>Ao atualizar: incrementar versão, manter versão anterior</li>
+            </ul>
+          </div>
+          <div>
+            <h3>SLAs</h3>
+            <div class="kpi-grid">
+              <div class="kpi-item"><div class="kpi-label">Prompt novo completo</div><div class="kpi-value">4h a 1 dia</div></div>
+            </div>
+            <h3>Checklist</h3>
+            <ul class="checklist">
+              <li>Papel da IA definido?</li>
+              <li>Regra de fidelidade incluída?</li>
+              <li>Proibições listadas?</li>
+              <li>Estrutura de output definida?</li>
+              <li>Tom especificado?</li>
+              <li>Auditoria interna incluída?</li>
+              <li>Testado com 2 casos reais?</li>
+              <li>Output consistente?</li>
+              <li>Salvo no PC + Drive com nomenclatura correta?</li>
+              <li>Versão incrementada (se atualização)?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOP58 - Conteúdo Visual com IA -->
+      <section id="sop-visual" class="sop-card">
+        <div class="sop-title-block">
+          <div class="sop-number-row" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span class="sop-number">SOP58</span>
+              <span class="status-new">Novo</span>
+            </div>
+            <button onclick="goToFlow('flow-sop58')" style="padding:0.25rem 0.65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--neutral-500);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-atmos)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-500)'">⬡ Ver fluxograma</button>
+          </div>
+          <div class="sop-label">SOP - Conteúdo</div>
+          <div class="sop-title">Criação de Conteúdo Visual com IA (Reels, Posts e Vídeos)</div>
+          <div class="sop-meta">
+            <span class="sop-tag">Owner: Lucas Paixão</span>
+            <span class="sop-tag">v1.0</span>
+            <span class="sop-tag">2026-05-04</span>
+            <span class="sop-tag highlight">Gatilho: demanda ClickUp · daily · material do Ruan disponível</span>
+          </div>
+        </div>
+
+        <p><strong>Ferramentas:</strong> Higgsfield · Midjourney · CapCut · Seedance · GitHub · ClickUp · Google Drive</p>
+
+        <div class="sop-body-grid">
+          <div>
+            <h3>Tipo A - Reel com Motion Control (Higgsfield)</h3>
+            <p>Vídeos do Ruan e conteúdo com movimento de câmera sobre imagem ou vídeo estático.</p>
+            <ol>
+              <li>Receber material base + briefing de movimento.</li>
+              <li><strong>Higgsfield:</strong> importar → configurar motion control (tipo, intensidade, direção) → gerar → avaliar.</li>
+              <li>Se necessário: ajustar e gerar novamente (até 3 tentativas).</li>
+              <li>Se precisar de finalização: <strong>CapCut</strong> → cortes, áudio, texto, identidade visual → exportar 9:16.</li>
+              <li>Drive + evidência no ClickUp. Avisar responsável.</li>
+            </ol>
+            <h3>Tipo B - Post / Imagem com IA (Midjourney)</h3>
+            <ul>
+              <li><strong>Imagens para posts e carroseis:</strong> o estilo segue a estética Overlens: tecnológico, artístico, objetos inusitados, sensação estranha (referência: Disney Tomorrowland). Não é obrigatório gerar do zero: dá para usar imagens de modelo, imagens existentes ou explorar o próprio Midjourney em busca de imagens que já tenham esse DNA. O objetivo é sempre reforçar a identidade visual, seja gerando, adaptando ou curadoriando. Para referência: o Figma tem um banco de imagens com exemplos do estilo, e o Instagram da Overlens serve como base do padrão visual publicado.</li>
+            </ul>
+            <p>Posts e carroseis podem ser estáticos ou ter movimento (vídeo). Quando a peça exige movimento, o Figma não suporta: a montagem é feita em editor de vídeo (CapCut ou similar), combinando as imagens geradas com os vídeos.</p>
+            <ol>
+              <li>Identificar o contexto: thumbnail de encontro ou imagem de post/carrosel.</li>
+              <li>Thumbnail: abrir prompt fixo do Figma. Post/carrosel: construir ou adaptar prompt com o estilo Overlens como referência.</li>
+              <li>Gerar no Midjourney → selecionar variação mais alinhada com a identidade visual.</li>
+              <li>Se a peça for estática: montar no Figma → exportar. Se tiver movimento: montar no CapCut → exportar.</li>
+              <li>Drive + evidência no ClickUp.</li>
+            </ol>
+            <h3>Tipo C - Reel Gerado por IA (Higgsfield)</h3>
+            <p>Reels gerados inteiramente por IA a partir de prompt ou imagem-referência. A plataforma principal para criação de vídeos com IA é o Higgsfield.</p>
+            <div class="callout warning">
+              <span class="callout-icon">⚠</span>
+              <span><strong>Acesso:</strong> as plataformas pagas (Higgsfield e outras) são acessadas pela conta <strong>acesso.overlens@gmail.com</strong>. Solicitar a senha ao responsável antes de começar.</span>
+            </div>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span>Antes de gerar: ter uma noção do que a plataforma oferece e para qual finalidade cada recurso serve. O Higgsfield tem diferentes modos e tipos de geração (motion control, animação de imagem, geração por prompt, etc.). Vale explorar a plataforma, entender o que cada coisa faz e definir com clareza qual tipo de vídeo quer criar antes de começar. Não é necessário dominar tudo, mas saber o suficiente para escolher o caminho certo faz diferença no resultado.</span>
+            </div>
+            <ol>
+              <li>Definir com clareza o intuito: que tipo de vídeo quer criar e qual formato/estilo quer modelar.</li>
+              <li>Escolher o modo adequado no Higgsfield conforme o objetivo (motion sobre imagem, geração por prompt, etc.).</li>
+              <li>Gerar → avaliar → iterar até aprovado.</li>
+              <li>Finalização no CapCut se necessário → exportar 9:16 → Drive + ClickUp.</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Checklist</h3>
+            <h4>Reel (motion control / gerado por IA)</h4>
+            <ul class="checklist">
+              <li>Resultado visual aprovado antes de entregar?</li>
+              <li>Formato 9:16 (vertical)?</li>
+              <li>Identidade visual Overlens mantida?</li>
+              <li>Evidência no ClickUp + responsável avisado?</li>
+            </ul>
+            <h4>Post / Imagem</h4>
+            <ul class="checklist">
+              <li>Prompt de estilo correto usado?</li>
+              <li>Alinhado com identidade visual?</li>
+              <li>Exportado no formato correto (1:1 ou 4:5)?</li>
+              <li>Evidência no ClickUp?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOP59 - Guias e Ferramentas -->
+      <section id="sop-ferramentas" class="sop-card">
+        <div class="sop-title-block">
+          <div class="sop-number-row" style="justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span class="sop-number">SOP59</span>
+              <span class="status-new">Novo</span>
+            </div>
+            <button onclick="goToFlow('flow-sop59')" style="padding:0.25rem 0.65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--neutral-500);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-atmos)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-500)'">⬡ Ver fluxograma</button>
+          </div>
+          <div class="sop-label">SOP - IA e Processos</div>
+          <div class="sop-title">Criação de Guias e Ferramentas Digitais</div>
+          <div class="sop-meta">
+            <span class="sop-tag">Owner: Lucas Paixão</span>
+            <span class="sop-tag">v1.0</span>
+            <span class="sop-tag">2026-05-04</span>
+            <span class="sop-tag highlight">Gatilho: demanda por material interativo · ferramenta de apoio ao trabalho</span>
+          </div>
+        </div>
+
+        <p><strong>O que são:</strong> materiais digitais interativos e ferramentas funcionais criados para apoiar o trabalho do time ou como conteúdo da Overlens. Incluem guias em HTML, apps de mapa mental, agregadores de notícias, dashboards de tendências e ferramentas que automatizam ou facilitam tarefas do dia a dia.</p>
+        <p><strong>Ferramentas:</strong> Claude Code (Antigravity / Codex) · Overlens Design System (node_modules/@overlens) · Vercel · GitHub · ClickUp</p>
+
+        <div class="sop-body-grid">
+          <div>
+            <h3>Tipo A - Guia Interativo em HTML</h3>
+            <p>Documentos web com identidade visual Overlens para ensinar processos, ferramentas ou conceitos. Exemplos: Guia de Agentes de IA, Guia Seedance, Guia de Prompts Kling. Para ter uma referência visual do que é um guia interativo: <a href="https://guiapensaria.vercel.app/" target="_blank" style="color:var(--brand-antar);text-decoration:underline">guiapensaria.vercel.app</a>. Geralmente esses materiais são entregues como parte de posts, carroseis ou reels, mas também podem ser usados em outros contextos: eventos, aulas, materiais de apoio internos ou qualquer outra situação onde um guia interativo agrega valor.</p>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span><strong>Como criar:</strong> duas abordagens possíveis. (1) Baixar ou passar a URL de um guia existente para a IA usar como base estrutural e visual. (2) Criar um prompt do zero descrevendo o que o guia precisa fazer. Em ambos os casos, o guia precisa ter o DNA Overlens: deve usar os pacotes <code>node_modules/@overlens</code> (tipografia, ícones, tokens de cor e espaçamento). O objetivo é criar algo melhor que o exemplo de referência: um HTML dinâmico e interativo, onde o usuário clica, navega entre seções e aprende ativamente, não apenas lê uma página estática de cima a baixo.</span>
+            </div>
+            <ol>
+              <li>Definir tema, público e objetivo do guia.</li>
+              <li>Estruturar o conteúdo em seções com Claude (tom Overlens: científico, claro, sem hype).</li>
+              <li>Escolher a abordagem: passar URL/arquivo de referência para a IA ou criar prompt do zero. Garantir que o design system da Overlens esteja presente (<code>@overlens/legacy-foundations</code>, <code>@overlens/legacy-components</code>, <code>@overlens/legacy-icons</code>).</li>
+              <li>Iterar com Claude até o guia estar completo, interativo e visualmente correto.</li>
+              <li>Deploy no <strong>Vercel</strong> → verificar em desktop e mobile.</li>
+              <li>Entregar link + evidência no ClickUp.</li>
+            </ol>
+            <h3>Tipo B - Ferramenta Funcional (App / Dashboard)</h3>
+            <p>Ferramentas que executam uma função real no dia a dia. Exemplos: <a href="https://github.com/paixaolucass/Mapa-Mental---Overlens" target="_blank" style="color:var(--brand-antar);text-decoration:underline">App Mapa Mental Vanguarda</a>, <a href="https://github.com/paixaolucass/HOOKIQ" target="_blank" style="color:var(--brand-antar);text-decoration:underline">HOOKIQ</a> (ferramenta finalizada para a equipe editorial: analisa transcrições com score viral, radar de trends em tempo real e traz notícias de IA muito relevantes com DNA Overlens, servindo como fonte de pesquisa e inspiração para posts antes mesmo de ter um conteúdo pronto sobre o tema). Ferramentas disponíveis em <a href="https://github.com/overlens-labs" target="_blank" style="color:var(--brand-antar);text-decoration:underline">github.com/overlens-labs</a>.</p>
+            <ol>
+              <li>Definir o problema que a ferramenta resolve e o que ela precisa fazer.</li>
+              <li>Especificar entradas, saídas e comportamento esperado.</li>
+              <li>Desenvolver com Claude Code → iterar até funcionar conforme esperado.</li>
+              <li>Testar com casos reais antes de usar em produção.</li>
+              <li>Deploy no Vercel (frontend) ou rodar localmente (servidor Node.js).</li>
+              <li>Documentar link e finalidade no Drive + evidência no ClickUp.</li>
+            </ol>
+            <div class="callout info">
+              <span class="callout-icon">ℹ</span>
+              <span>Ferramentas criadas aqui são ativos do time - documentar onde estão deployadas e o que fazem para que qualquer pessoa consiga usar ou dar manutenção.</span>
+            </div>
+          </div>
+          <div>
+            <h3>SLAs</h3>
+            <div class="kpi-grid">
+              <div class="kpi-item"><div class="kpi-label">Guia HTML simples</div><div class="kpi-value">~2–4h</div></div>
+              <div class="kpi-item"><div class="kpi-label">Guia HTML completo</div><div class="kpi-value">~1 dia</div></div>
+              <div class="kpi-item"><div class="kpi-label">Ferramenta funcional</div><div class="kpi-value">~1–3 dias</div></div>
+            </div>
+            <h3>Checklist</h3>
+            <h4>Guia HTML</h4>
+            <ul class="checklist">
+              <li>Design system Overlens aplicado (cores, fontes, tokens)?</li>
+              <li>Conteúdo no tom Overlens (científico, sem hype)?</li>
+              <li>Testado em desktop e mobile?</li>
+              <li>Deploy no Vercel funcionando?</li>
+              <li>Link entregue + evidência no ClickUp?</li>
+            </ul>
+            <h4>Ferramenta funcional</h4>
+            <ul class="checklist">
+              <li>Testada com casos reais antes de entregar?</li>
+              <li>Finalidade e link documentados no Drive?</li>
+              <li>Evidência no ClickUp?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARTE 2 -->
+      <div id="automacao" class="part-header" style="margin-top:2.5rem;">
+        <span class="part-badge">Parte 2</span>
+        <h2>Proposta de Automação com IA</h2>
+      </div>
+      <p class="part-intro">Processos do Squad de Conteúdo onde já uso IA e que identifico como oportunidade de otimização adicional ou formalização para o time.</p>
+
+      <h3 style="font-family:var(--font-heading);font-size:0.9rem;font-weight:600;color:var(--neutral-300);margin-bottom:0.875rem;">Onde já uso IA hoje</h3>
+      <div class="table-wrap" style="margin-bottom:2rem;">
+        <table class="ia-table">
+          <thead><tr><th>Processo</th><th>Como uso a IA</th><th>Ferramenta</th></tr></thead>
+          <tbody>
+            <tr><td>Encontros Vanguarda - corte do vídeo</td><td>Prompt salvo → IA identifica timestamp de início na transcrição</td><td>Claude / ChatGPT</td></tr>
+            <tr><td>Encontros Vanguarda - Resumo Inteligente</td><td>Prompt salvo → IA gera RI estruturado a partir da transcrição cortada</td><td>Claude / ChatGPT</td></tr>
+            <tr><td>Carrosel - textos</td><td>IA modela conteúdo de referência ou traduz para a linguagem da Overlens ou do Ruan Braz: adapta, melhora e alinha ao tom da marca, não gera do zero</td><td>Claude</td></tr>
+            <tr><td>Carrosel - imagens</td><td>Prompt de estilo salvo → Midjourney gera imagens consistentes</td><td>Midjourney</td></tr>
+            <tr><td>Materiais digitais (sites/guias)</td><td>IA gera o código e conteúdo completo</td><td>Claude (Antigravity/Codex)</td></tr>
+            <tr><td>Prompts</td><td>IA ajuda a testar e refinar os próprios prompts</td><td>Claude</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-family:var(--font-heading);font-size:0.9rem;font-weight:600;color:var(--neutral-300);margin-bottom:0.4rem;">Ideias e possíveis melhorias futuras</h3>
+      <p style="font-size:0.8rem;color:oklch(0.475 0 0);margin-bottom:1rem;">Nenhuma dessas automações é viável de forma 100% automática com a infraestrutura atual. Cada uma tem uma limitação técnica real mapeada abaixo.</p>
+      <div class="automation-grid">
+        <div class="automation-card">
+          <div class="automation-num">Automação 01</div>
+          <div class="automation-title">Geração de RI pós-encontro</div>
+          <div class="automation-row"><span class="automation-row-label">Situação atual</span><span class="automation-row-value">Processo manual: baixar transcrição do Zoom, colar no Claude, revisar e colar na plataforma.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Oportunidade</span><span class="automation-row-value">Make.com ou Claude Routines processa a transcrição e entrega o RI formatado, só revisar e colar.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Limitação</span><span class="automation-row-value">Automação completa exige API do Zoom para baixar a transcrição automaticamente. Sem isso, o download continua manual.</span></div>
+          <span class="impact-badge">↓ ~20min → ~3min por encontro (com API do Zoom)</span>
+        </div>
+        <div class="automation-card">
+          <div class="automation-num">Automação 02</div>
+          <div class="automation-title">Ata estruturada via Gemini + Claude</div>
+          <div class="automation-row"><span class="automation-row-label">Situação atual</span><span class="automation-row-value">O Gemini já envia ao Gmail um resumo automático de cada reunião, mas sem ata estruturada com decisões, ações e owners.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Oportunidade</span><span class="automation-row-value">Claude Routines lê o email do Gemini, extrai decisões, ações e owners, gera ata v0 estruturada e abre cards no ClickUp.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Limitação</span><span class="automation-row-value">A mais viável das 4: o insumo (email do Gemini) já existe. Depende de configurar a integração Gmail + Claude Routines. A abertura automática de cards no ClickUp dependeria da API do ClickUp, a verificar se está disponível e em que plano.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Referência</span><span class="automation-row-value">SOP52 (já documenta esse fluxo na empresa).</span></div>
+        </div>
+        <div class="automation-card">
+          <div class="automation-num">Automação 03</div>
+          <div class="automation-title">Briefing de criativos via formulário</div>
+          <div class="automation-row"><span class="automation-row-label">Situação atual</span><span class="automation-row-value">Briefings chegam informais por reunião, WhatsApp ou daily, sem estrutura padrão.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Oportunidade</span><span class="automation-row-value">Formulário no Tally ou Google Forms, Claude estrutura o briefing no padrão SOP e abre card no ClickUp com campos preenchidos.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Limitação</span><span class="automation-row-value">Depende da disciplina do time em usar o formulário em vez de mandar mensagem. A ferramenta é simples, o comportamento é o gargalo.</span></div>
+          <span class="impact-badge">↓ Elimina retrabalho por briefing incompleto</span>
+        </div>
+        <div class="automation-card">
+          <div class="automation-num">Automação 04</div>
+          <div class="automation-title">Aviso de encontro publicado no WhatsApp</div>
+          <div class="automation-row"><span class="automation-row-label">Situação atual</span><span class="automation-row-value">Mensagem enviada manualmente com um dos 4 templates (Checkpoint padrão, Checkpoint com boas-vindas, Workshop, Masterclass).</span></div>
+          <div class="automation-row"><span class="automation-row-label">Oportunidade</span><span class="automation-row-value">Trigger pós-publicação detecta o tipo de encontro e envia o template certo automaticamente.</span></div>
+          <div class="automation-row"><span class="automation-row-label">Limitação</span><span class="automation-row-value">Requer três dependências: (1) API da plataforma da Vanguarda para detectar quando um encontro foi publicado, sem isso a automação não tem como saber que o trigger aconteceu; (2) API oficial do WhatsApp Business ou integração via Zapier/Make.com para o envio; (3) lógica para identificar o tipo de encontro e escolher o template correto. Sem essas três, o envio continua manual.</span></div>
+        </div>
+        <div class="automation-card" style="grid-column: 1 / -1;">
+          <div class="auto05-inner" style="display:grid;grid-template-columns:1fr 2fr;gap:1.5rem;align-items:start;">
+            <div>
+              <div class="automation-num">Automação 05</div>
+              <div class="automation-title">Aviso automático de encontro publicado</div>
+              <div class="automation-row"><span class="automation-row-label">Situação atual</span><span class="automation-row-value">Mensagem enviada manualmente com um dos 4 templates abaixo (Checkpoint padrão, Checkpoint com boas-vindas, Workshop, Masterclass).</span></div>
+              <div class="automation-row"><span class="automation-row-label">Proposta</span><span class="automation-row-value">Claude Routines com trigger pós-publicação no Vimeo: detecta o tipo de encontro e envia o template certo automaticamente.</span></div>
+            </div>
+            <div>
+              <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:oklch(0.719 0 0);margin-bottom:0.625rem;">Templates WhatsApp</div>
+              <div class="auto05-templates" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);margin-bottom:0.2rem;">Checkpoint / Padrão</div>
+                  <pre style="font-size:0.725rem;padding:0.625rem;background:var(--neutral-950);border:1px solid var(--border);border-radius:6px;white-space:pre-wrap;line-height:1.55;margin:0;"><code style="font-family:var(--font-body);font-size:inherit;color:var(--neutral-300);background:none;padding:0;">Fala, galera! Tudo certo?
+
+O Checkpoint de hoje já está disponível na Área Secreta da Vanguarda.
+Pra quem não conseguiu acompanhar ao vivo ou quiser revisitar o conteúdo, já pode acessar por lá e ver tudo com calma. ⚡</code></pre>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);margin-bottom:0.2rem;">Checkpoint / Com boas-vindas</div>
+                  <pre style="font-size:0.725rem;padding:0.625rem;background:var(--neutral-950);border:1px solid var(--border);border-radius:6px;white-space:pre-wrap;line-height:1.55;margin:0;"><code style="font-family:var(--font-body);font-size:inherit;color:var(--neutral-300);background:none;padding:0;">Fala, galera! Tudo certo?
+
+O Checkpoint de hoje já está disponível na Área Secreta da Vanguarda.
+Pra quem não conseguiu acompanhar ao vivo ou quiser revisar, já pode acessar por lá. ⚡
+
+E boas-vindas aos novos membros que chegaram na turma! Sejam bem-vindos, bora aproveitar ao máximo os conteúdos. 🚀
+
+Ah, e um detalhe importante: dentro da aula, na aba de arquivos, vocês encontram o chat do encontro, o mapa mental e a transcrição, tudo organizado pra facilitar o uso.</code></pre>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);margin-bottom:0.2rem;">Workshop</div>
+                  <pre style="font-size:0.725rem;padding:0.625rem;background:var(--neutral-950);border:1px solid var(--border);border-radius:6px;white-space:pre-wrap;line-height:1.55;margin:0;"><code style="font-family:var(--font-body);font-size:inherit;color:var(--neutral-300);background:none;padding:0;">Fala, pessoal! Tudo certo? Chegando aqui pra avisar que o Workshop de hoje já foi liberado na Área Secreta da Vanguarda.
+
+Quem não conseguiu acompanhar ao vivo ou quiser revisitar o conteúdo com mais calma, já pode acessar por lá. 🚀
+E lembrando: dentro da aula, na aba de arquivos, vocês também têm o mapa mental, o chat do encontro e a transcrição completa.</code></pre>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);margin-bottom:0.2rem;">Masterclass</div>
+                  <pre style="font-size:0.725rem;padding:0.625rem;background:var(--neutral-950);border:1px solid var(--border);border-radius:6px;white-space:pre-wrap;line-height:1.55;margin:0;"><code style="font-family:var(--font-body);font-size:inherit;color:var(--neutral-300);background:none;padding:0;">Fala, pessoal! Tudo certo?
+
+O Masterclass de ontem já tá no ar na Área Secreta da Vanguarda.
+Pra quem ainda tá por aqui na madrugada, já dá pra assistir agora, seja pra ver pela primeira vez ou revisitar com calma. 🌙
+
+E pra quem não viu, recomendo demais assistir… teve até proposta ao vivo 👀</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- end doc-layout -->
+
+  <!-- FLOWCHART VIEW -->
+  <div id="flowchart-view" style="display:none;">
+    <div style="padding:1.25rem 1.5rem 0;display:flex;align-items:center;gap:0.75rem;">
+      <button onclick="setView('doc');window.scrollTo({top:0,behavior:'smooth'});" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.4rem 0.875rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--neutral-400);font-family:var(--font-body);font-size:0.75rem;font-weight:600;cursor:pointer;" onmouseover="this.style.borderColor='var(--brand-atmos)';this.style.color='var(--brand-antar)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--neutral-400)'">
+        ← Voltar ao documento
+      </button>
+    </div>
+    <div class="flow-header">
+      <h2>Fluxograma de Processos</h2>
+      <p>Squad de Conteúdo · Overlens</p>
+
+      <!-- Banner leia a documentação -->
+      <div style="margin:1.25rem auto 0;max-width:640px;background:oklch(0.779 0.08 212.242 / 0.07);border:1px solid oklch(0.779 0.08 212.242 / 0.22);border-radius:var(--radius-sm);padding:1rem 1.25rem;display:flex;align-items:center;gap:0.875rem;text-align:left;">
+        <span style="font-size:1.25rem;flex-shrink:0;">📖</span>
+        <div style="flex:1;">
+          <p style="font-size:0.775rem;color:var(--neutral-300);margin:0;line-height:1.55;">Este fluxograma é um <strong style="color:var(--neutral-100);">resumo visual</strong> dos processos. Para SLAs, checklists, prompts e contexto completo, a documentação tem tudo isso com muito mais detalhe.</p>
+        </div>
+        <button onclick="setView('doc');window.scrollTo({top:0,behavior:'smooth'});" style="flex-shrink:0;padding:0.4rem 0.875rem;border-radius:6px;border:1px solid oklch(0.779 0.08 212.242 / 0.5);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.72rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.12)'" onmouseout="this.style.background='transparent'">Ler documentação →</button>
+      </div>
+
+      <div style="margin:1.25rem auto 0;max-width:640px;background:oklch(0.309 0 0 / 60%);border:1px solid var(--brand-kobold);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;">
+        <div style="font-family:var(--font-heading);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand-antar);margin-bottom:0.875rem;">Baixar fluxograma</div>
+        <div class="dl-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="dl-card">
+            <div class="dl-card-title">.svg / Vetor</div>
+            <div class="dl-card-desc">Para <strong>Figma e Illustrator.</strong> Arraste para o canvas — editável como vetor.</div>
+            <button class="dl-btn" onclick="downloadSVG()">Baixar .svg</button>
+          </div>
+          <div class="dl-card">
+            <div class="dl-card-title">.mmd / Mermaid</div>
+            <div class="dl-card-desc">Somente <strong>FigJam</strong> (não Figma). No FigJam: "+" → "Diagrama" → "Importar Mermaid".</div>
+            <button class="dl-btn" onclick="downloadMermaid()">Baixar .mmd</button>
+          </div>
+          <div class="dl-card">
+            <div class="dl-card-title">.png / Imagem</div>
+            <div class="dl-card-desc">Funciona em qualquer app: <strong>Figma, Canva, Notion, Slides.</strong> 2x resolução.</div>
+            <button class="dl-btn" onclick="downloadPNG()">Baixar .png</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISÃO GERAL -->
+    <div class="flow-section" id="flow-overview">
+      <div class="flow-section-title">Visão Geral: Qual SOP usar?</div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Nova tarefa</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node decision">Qual é o tipo de tarefa?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-branch-row">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Encontro da Vanguarda</div>
+            <div class="flow-node"><strong>SOP55</strong><br><span class="flow-sub">Processamento e Publicação</span></div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Carrosel, Reel ou Site</div>
+            <div class="flow-node"><strong>SOP56</strong><br><span class="flow-sub">Criativos</span></div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Criar ou melhorar prompt</div>
+            <div class="flow-node"><strong>SOP57</strong><br><span class="flow-sub">Prompts de IA</span></div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Imagem ou vídeo com IA</div>
+            <div class="flow-node"><strong>SOP58</strong><br><span class="flow-sub">Visual com IA</span></div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Guia ou ferramenta digital</div>
+            <div class="flow-node"><strong>SOP59</strong><br><span class="flow-sub">Guias e Apps</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOP55 -->
+    <div class="flow-section" id="flow-sop55">
+      <div class="flow-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>SOP55: Encontros da Vanguarda</span>
+        <button onclick="goToSOP('sop-vanguarda')" style="flex-shrink:0;padding:0.3rem 0.7rem;border-radius:5px;border:1px solid oklch(0.779 0.08 212.242 / 0.4);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.1)'" onmouseout="this.style.background='transparent'">Ler documentação completa →</button>
+      </div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Encontro realizado (Checkpoint, Workshop ou Masterclass)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 01:</strong> Aguardar Zoom<br><span class="flow-sub">Gravação + transcrição + bate papo · 1h a 3h</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 02:</strong> Cortar no CapCut + IA<br><span class="flow-sub">Prompt diagnóstico (Drive) · corte · exportar 1080p 25fps H.265 · ~1h</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 03:</strong> RI + Mapa Mental<br><span class="flow-sub">Prompt RI (Drive) → Resumo Inteligente → App Mapa Mental · ~20min</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 04:</strong> Upload plataforma Vanguarda<br><span class="flow-sub">Transcrição · mapa mental · bate papo · RI na descrição · ~10min</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-parallel-note">Fases 05 e 06 em paralelo</div>
+        <div class="flow-branch-row" style="max-width:500px;">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Fase 05</div>
+            <div class="flow-node"><strong>HandBrake</strong><br><span class="flow-sub">1080p 25fps · ~1h a 1h30</span></div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Fase 06</div>
+            <div class="flow-node"><strong>Thumbnail</strong><br><span class="flow-sub">Checkpoint: fixa · Workshop/MC: Midjourney</span></div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 07:</strong> Upload Vimeo<br><span class="flow-sub">Upload · renomear · subir thumbnail · ~20min</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><strong>Fase 08:</strong> Publicar + avisar<br><span class="flow-sub">Link Vimeo na plataforma Vanguarda · template WhatsApp</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node end">Concluído · Evidência no ClickUp</div>
+      </div>
+    </div>
+
+    <!-- SOP56 -->
+    <div class="flow-section" id="flow-sop56">
+      <div class="flow-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>SOP56: Carroseis, Reels e Materiais Digitais</span>
+        <button onclick="goToSOP('sop-criativos')" style="flex-shrink:0;padding:0.3rem 0.7rem;border-radius:5px;border:1px solid oklch(0.779 0.08 212.242 / 0.4);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.1)'" onmouseout="this.style.background='transparent'">Ler documentação completa →</button>
+      </div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Demanda de criativo (ClickUp · daily · backlog)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node decision">Qual tipo de peça?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-branch-row">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo A</div>
+            <div class="flow-node"><strong>Carrosel</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Tema → textos Claude (templates Figma) → imagens Midjourney → montar Figma → revisar → exportar</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo B</div>
+            <div class="flow-node"><strong>Reel</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Definir perfil (Overlens ou Ruan Braz) → vídeo Ruan ou gravação própria → modelar formato → CapCut → exportar 9:16</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo C</div>
+            <div class="flow-node"><strong>Material Digital</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Definir tipo → Claude (Antigravity/Codex) → iterar → deploy Vercel → verificar link</div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node end">Drive + Evidência no ClickUp</div>
+      </div>
+    </div>
+
+    <!-- SOP57 -->
+    <div class="flow-section" id="flow-sop57">
+      <div class="flow-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>SOP57: Criação e Gestão de Prompts de IA</span>
+        <button onclick="goToSOP('sop-prompts')" style="flex-shrink:0;padding:0.3rem 0.7rem;border-radius:5px;border:1px solid oklch(0.779 0.08 212.242 / 0.4);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.1)'" onmouseout="this.style.background='transparent'">Ler documentação completa →</button>
+      </div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Tarefa repetitiva sem prompt ou queda de qualidade</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Definir função, input e output esperado</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Estruturar prompt<br><span class="flow-sub">Papel · fidelidade · proibições · estrutura · tom · auditoria interna</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Testar com 2 casos reais (denso + simples)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node decision">Output consistente?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-branch-row" style="max-width:480px;">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Não</div>
+            <div class="flow-node">Ajustar → retestar</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Sim</div>
+            <div class="flow-node">Salvar PC + Drive<br><span class="flow-sub">Prompt - [Função] - v[n]</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node end">Pronto para uso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOP58 -->
+    <div class="flow-section" id="flow-sop58">
+      <div class="flow-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>SOP58: Conteúdo Visual com IA</span>
+        <button onclick="goToSOP('sop-visual')" style="flex-shrink:0;padding:0.3rem 0.7rem;border-radius:5px;border:1px solid oklch(0.779 0.08 212.242 / 0.4);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.1)'" onmouseout="this.style.background='transparent'">Ler documentação completa →</button>
+      </div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Demanda de conteúdo visual</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node decision">Qual tipo de visual?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-branch-row">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo A</div>
+            <div class="flow-node"><strong>Motion (Higgsfield)</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Material base → Higgsfield (motion control) → avaliar → CapCut se necessário → 9:16</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo B</div>
+            <div class="flow-node"><strong>Imagem (Midjourney)</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Prompt estilo Overlens → Midjourney → selecionar → estático (Figma) ou movimento (CapCut)</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo C</div>
+            <div class="flow-node"><strong>Reel IA (Higgsfield)</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Definir conceito → explorar Higgsfield → gerar → iterar → CapCut se necessário → 9:16</div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node end">Drive + Evidência no ClickUp</div>
+      </div>
+    </div>
+
+    <!-- SOP59 -->
+    <div class="flow-section" id="flow-sop59">
+      <div class="flow-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>SOP59: Guias e Ferramentas Digitais</span>
+        <button onclick="goToSOP('sop-ferramentas')" style="flex-shrink:0;padding:0.3rem 0.7rem;border-radius:5px;border:1px solid oklch(0.779 0.08 212.242 / 0.4);background:transparent;color:var(--brand-atmos);font-family:var(--font-body);font-size:0.68rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.background='oklch(0.779 0.08 212.242 / 0.1)'" onmouseout="this.style.background='transparent'">Ler documentação completa →</button>
+      </div>
+      <div class="flow-chart">
+        <div class="flow-node trigger">Demanda de guia ou ferramenta digital</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node decision">Qual tipo de material?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-branch-row" style="max-width:560px;">
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo A</div>
+            <div class="flow-node"><strong>Guia Interativo HTML</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Tema + objetivo → estruturar com Claude → HTML com design system Overlens → iterar → deploy Vercel</div>
+          </div>
+          <div class="flow-branch-col">
+            <div class="flow-branch-label">Tipo B</div>
+            <div class="flow-node"><strong>Ferramenta Funcional</strong></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="font-size:0.72rem;">Problema a resolver → Claude Code (Antigravity/Codex) → desenvolver → deploy Vercel → documentar</div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node end">Link entregue + Evidência no ClickUp</div>
+      </div>
+    </div>
+
+    <!-- AUTOMAÇÃO -->
+    <div class="flow-section">
+      <div class="flow-section-title">Ideias e possíveis melhorias futuras</div>
+      <p style="font-size:0.8rem;color:var(--neutral-500);margin-bottom:1.25rem;text-align:center;">Nenhuma 100% automática hoje. Cada uma tem limitação técnica mapeada.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.75rem;max-width:900px;margin:0 auto;">
+        <div class="flow-node" style="text-align:left;gap:0.5rem;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);letter-spacing:0.06em;">AUTOMAÇÃO 01</div>
+          <div style="font-weight:700;font-size:0.8rem;">Geração de RI pós-encontro</div>
+          <div class="flow-sub">Make.com ou Claude Routines processa a transcrição e entrega o RI. Limitação: precisa de API do Zoom para baixar a transcrição automaticamente.</div>
+          <div style="font-size:0.7rem;color:var(--brand-atmos);font-weight:600;">↓ ~20min → ~3min por encontro</div>
+        </div>
+        <div class="flow-node" style="text-align:left;gap:0.5rem;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);letter-spacing:0.06em;">AUTOMAÇÃO 02</div>
+          <div style="font-weight:700;font-size:0.8rem;">Ata estruturada via Gemini + Claude</div>
+          <div class="flow-sub">Claude Routines lê o email do Gemini, extrai decisões, ações e owners, gera ata v0 e abre cards no ClickUp. A mais viável: o insumo (email) já existe. Depende de integração Gmail + ClickUp API.</div>
+        </div>
+        <div class="flow-node" style="text-align:left;gap:0.5rem;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);letter-spacing:0.06em;">AUTOMAÇÃO 03</div>
+          <div style="font-weight:700;font-size:0.8rem;">Briefing de criativos via formulário</div>
+          <div class="flow-sub">Tally ou Google Forms → Claude estrutura o briefing e abre card no ClickUp. Limitação: depende de disciplina do time em usar o formulário.</div>
+          <div style="font-size:0.7rem;color:var(--brand-atmos);font-weight:600;">↓ Elimina retrabalho por briefing incompleto</div>
+        </div>
+        <div class="flow-node" style="text-align:left;gap:0.5rem;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);letter-spacing:0.06em;">AUTOMAÇÃO 04</div>
+          <div style="font-weight:700;font-size:0.8rem;">Aviso de encontro publicado no WhatsApp</div>
+          <div class="flow-sub">Trigger pós-publicação detecta o tipo de encontro e envia o template certo. Limitação: requer API da plataforma Vanguarda + API WhatsApp Business + lógica de tipo de encontro.</div>
+        </div>
+        <div class="flow-node" style="text-align:left;gap:0.5rem;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;font-weight:700;color:var(--brand-kobold);letter-spacing:0.06em;">AUTOMAÇÃO 05</div>
+          <div style="font-weight:700;font-size:0.8rem;">Aviso automático via Vimeo trigger</div>
+          <div class="flow-sub">Claude Routines com trigger pós-publicação no Vimeo: detecta o tipo de encontro e envia o template WhatsApp correto automaticamente.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <p>Overlens · Squad de Conteúdo · Lucas Paixão</p>
+    <p>2026-04-30 · v1.0</p>
+  </footer>
+
+</div>
+<script>
+  function downloadMermaid() {
+    var content = `flowchart TD
+  Start([Nova tarefa]) --> Qual{Qual tipo de tarefa?}
+  Qual -->|Encontro Vanguarda| SOP55[SOP55: Vanguarda]
+  Qual -->|Carrosel, Reel ou Site| SOP56[SOP56: Criativos]
+  Qual -->|Criar ou melhorar prompt| SOP57[SOP57: Prompts de IA]
+  Qual -->|Imagem ou video com IA| SOP58[SOP58: Visual com IA]
+  Qual -->|Guia ou ferramenta digital| SOP59[SOP59: Guias e Apps]
+
+  subgraph SOP55 [SOP55 - Encontros da Vanguarda]
+    E01([Encontro realizado]) --> F01[Fase 01: Aguardar Zoom - 1h a 3h]
+    F01 --> F02[Fase 02: Cortar CapCut + IA - ~1h]
+    F02 --> F03[Fase 03: RI + Mapa Mental - ~20min]
+    F03 --> F04[Fase 04: Upload plataforma Vanguarda - ~10min]
+    F04 --> PAR{Paralelo}
+    PAR --> F05[Fase 05: HandBrake - ~1h a 1h30]
+    PAR --> F06[Fase 06: Thumbnail]
+    F05 --> F07[Fase 07: Upload Vimeo - ~20min]
+    F06 --> F07
+    F07 --> F08[Fase 08: Publicar + avisar WhatsApp]
+    F08 --> END55([Concluido - ClickUp])
+  end
+
+  subgraph SOP56 [SOP56 - Carroseis, Reels e Materiais]
+    D56([Demanda de criativo]) --> T56{Qual tipo?}
+    T56 -->|Tipo A| C56A[Carrosel: Figma + Claude + Midjourney]
+    T56 -->|Tipo B| C56B[Reel: CapCut]
+    T56 -->|Tipo C| C56C[Material Digital: Claude + Vercel]
+    C56A --> END56([Drive + ClickUp])
+    C56B --> END56
+    C56C --> END56
+  end
+
+  subgraph SOP57 [SOP57 - Prompts de IA]
+    D57([Tarefa sem prompt ou queda de qualidade]) --> S57A[Definir funcao, input e output]
+    S57A --> S57B[Estruturar prompt]
+    S57B --> S57C[Testar com 2 casos reais]
+    S57C --> Q57{Output consistente?}
+    Q57 -->|Nao| S57B
+    Q57 -->|Sim| END57([Salvar PC + Drive])
+  end
+
+  subgraph SOP58 [SOP58 - Conteudo Visual com IA]
+    D58([Demanda de visual]) --> T58{Qual tipo?}
+    T58 -->|Tipo A| C58A[Motion: Higgsfield]
+    T58 -->|Tipo B| C58B[Imagem: Midjourney]
+    T58 -->|Tipo C| C58C[Reel IA: Higgsfield]
+    C58A --> END58([Drive + ClickUp])
+    C58B --> END58
+    C58C --> END58
+  end
+
+  subgraph SOP59 [SOP59 - Guias e Ferramentas]
+    D59([Demanda de guia ou ferramenta]) --> T59{Qual tipo?}
+    T59 -->|Tipo A| C59A[Guia HTML interativo]
+    T59 -->|Tipo B| C59B[Ferramenta funcional]
+    C59A --> END59([Link + ClickUp])
+    C59B --> END59
+  end`;
+
+    var blob = new Blob([content], { type: 'text/plain' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'SOPs_Overlens_Fluxograma.mmd';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function goToSOP(anchor) {
+    setView('doc');
+    setTimeout(function() {
+      var el = document.getElementById(anchor);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  function goToFlow(flowId) {
+    setView('flow');
+    setTimeout(function() {
+      var el = document.getElementById(flowId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  function setView(view) {
+    var docLayout = document.getElementById('doc-layout');
+    var flowView = document.getElementById('flowchart-view');
+    var btnDoc = document.getElementById('btn-doc');
+    var btnFlow = document.getElementById('btn-flow');
+    var bannerDoc = document.getElementById('banner-btn-doc');
+    var bannerFlow = document.getElementById('banner-btn-flow');
+    if (view === 'flow') {
+      docLayout.style.display = 'none';
+      flowView.style.display = 'block';
+      if (btnDoc) { btnDoc.classList.remove('active'); btnFlow.classList.add('active'); }
+      bannerDoc.className = 'switcher-btn off';
+      bannerFlow.className = 'switcher-btn on';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      docLayout.style.display = '';
+      flowView.style.display = 'none';
+      if (btnDoc) { btnDoc.classList.add('active'); btnFlow.classList.remove('active'); }
+      bannerDoc.className = 'switcher-btn on';
+      bannerFlow.className = 'switcher-btn off';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function _genSVG() {
+    var bg = '#0a0a0a'; var atmos = '#5ab4c8'; var sahara = '#c8a45a'; var kobold = '#3a5fa0';
+    var n200 = '#d4d4d4'; var n500 = '#737373'; var n900 = '#171717'; var border = '#2a2a2a';
+    function node(x, y, w, h, text, type) {
+      var rx = type === 'trigger' || type === 'end' ? 22 : 8;
+      var fill = type === 'trigger' ? 'rgba(90,180,200,0.15)' : type === 'end' ? 'rgba(58,95,160,0.2)' : type === 'decision' ? 'rgba(200,164,90,0.12)' : n900;
+      var stroke = type === 'trigger' ? atmos : type === 'end' ? kobold : type === 'decision' ? sahara : border;
+      var color = type === 'trigger' ? atmos : type === 'end' ? n200 : type === 'decision' ? sahara : n200;
+      var lines = text.split('\n'); var lineH = 16; var totalH = lines.length * lineH;
+      var out = '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+rx+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1"/>';
+      lines.forEach(function(l,i){ out += '<text x="'+(x+w/2)+'" y="'+(y+(h-totalH)/2+lineH*(i+1)-3)+'" text-anchor="middle" font-size="11" fill="'+color+'" font-family="Inter,sans-serif">'+l+'</text>'; });
+      return out;
+    }
+    function arrow(x1,y1,x2,y2){ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+n500+'" stroke-width="1.5" marker-end="url(#arr)"/>'; }
+    function label(x,y,t){ return '<text x="'+x+'" y="'+y+'" text-anchor="middle" font-size="9" fill="'+atmos+'" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">'+t.toUpperCase()+'</text>'; }
+    function sectionTitle(x,y,t){ return '<text x="'+x+'" y="'+y+'" font-size="10" fill="'+atmos+'" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">'+t.toUpperCase()+'</text><line x1="'+x+'" y1="'+(y+6)+'" x2="'+(x+1100)+'" y2="'+(y+6)+'" stroke="'+border+'" stroke-width="1"/>'; }
+    var s = '';
+    // Overview
+    s += sectionTitle(50,60,'Visao Geral');
+    s += node(450,80,260,40,'Nova tarefa','trigger'); s += arrow(580,120,580,160);
+    s += node(410,160,340,40,'Qual e o tipo de tarefa?','decision');
+    var sops = [['SOP55','Vanguarda',80],['SOP56','Criativos',280],['SOP57','Prompts',480],['SOP58','Visual IA',680],['SOP59','Guias',880]];
+    sops.forEach(function(sp){ s += arrow(sp[2]+90,200,sp[2]+90,240); s += node(sp[2],240,180,50,sp[0]+'\n'+sp[1],''); });
+    // SOP55
+    var y = 340; s += sectionTitle(50,y,'SOP55 - Encontros da Vanguarda'); y+=30;
+    var steps55 = [['Encontro realizado','trigger'],['Fase 01: Aguardar Zoom (1h a 3h)',''],['Fase 02: Cortar CapCut + IA (~1h)',''],['Fase 03: RI + Mapa Mental (~20min)',''],['Fase 04: Upload plataforma Vanguarda','']];
+    steps55.forEach(function(st){ s += node(430,y,300,38,st[0],st[1]); y+=38; s += arrow(580,y,580,y+10); y+=10; });
+    s += node(300,y,240,38,'Fase 05: HandBrake',''); s += node(620,y,240,38,'Fase 06: Thumbnail','');
+    s += arrow(430,y+19,620,y+19); var py=y; y+=58;
+    s += arrow(420,py+38,580,y); s += arrow(740,py+38,580,y);
+    s += node(430,y,300,38,'Fase 07: Upload Vimeo (~20min)',''); y+=38; s += arrow(580,y,580,y+10); y+=10;
+    s += node(430,y,300,38,'Fase 08: Publicar + avisar WhatsApp',''); y+=38; s += arrow(580,y,580,y+10); y+=10;
+    s += node(430,y,300,38,'Concluido - ClickUp','end'); y+=60;
+    // SOP56
+    s += sectionTitle(50,y,'SOP56 - Criativos'); y+=30;
+    s += node(430,y,300,38,'Demanda de criativo','trigger'); y+=38; s += arrow(580,y,580,y+10); y+=10;
+    s += node(410,y,340,38,'Qual tipo de peca?','decision'); y+=38; s += arrow(580,y,580,y+10); y+=10;
+    var bx56=[[80,'Tipo A','Carrosel\nFigma+Claude+MJ'],[430,'Tipo B','Reel\nCapCut'],[780,'Tipo C','Material Digital\nClaude+Vercel']];
+    bx56.forEach(function(b){ s+=label(b[0]+90,y+5,b[1]); s+=node(b[0],y+15,180,48,b[2],''); });
+    y+=83; s += arrow(170,y,580,y+20); s += arrow(520,y,580,y+20); s += arrow(870,y,580,y+20); y+=30;
+    s += node(430,y,300,38,'Drive + ClickUp','end'); y+=60;
+    // SOP57
+    s += sectionTitle(50,y,'SOP57 - Prompts de IA'); y+=30;
+    var steps57=[['Tarefa sem prompt ou queda de qualidade','trigger'],['Definir funcao, input e output',''],['Estruturar prompt (papel, fidelidade, proibicoes, tom)',''],['Testar com 2 casos reais','']];
+    steps57.forEach(function(st){ s+=node(390,y,360,38,st[0],st[1]); y+=38; s+=arrow(570,y,570,y+10); y+=10; });
+    s+=node(390,y,360,38,'Output consistente?','decision'); y+=38; s+=arrow(570,y,570,y+10); y+=10;
+    s+=node(300,y,200,38,'Ajustar e retestar',''); s+=node(560,y,200,38,'Salvar PC + Drive',''); y+=48;
+    s+=node(390,y,360,38,'Pronto para uso','end'); y+=60;
+    // SOP58
+    s += sectionTitle(50,y,'SOP58 - Visual com IA'); y+=30;
+    s+=node(430,y,300,38,'Demanda de visual','trigger'); y+=38; s+=arrow(580,y,580,y+10); y+=10;
+    s+=node(410,y,340,38,'Qual tipo de visual?','decision'); y+=38; s+=arrow(580,y,580,y+10); y+=10;
+    var bx58=[[80,'Tipo A','Motion\nHiggsfield'],[430,'Tipo B','Imagem\nMidjourney'],[780,'Tipo C','Reel IA\nHiggsfield']];
+    bx58.forEach(function(b){ s+=label(b[0]+90,y+5,b[1]); s+=node(b[0],y+15,180,48,b[2],''); });
+    y+=83; s+=arrow(170,y,580,y+20); s+=arrow(520,y,580,y+20); s+=arrow(870,y,580,y+20); y+=30;
+    s+=node(430,y,300,38,'Drive + ClickUp','end'); y+=60;
+    // SOP59
+    s += sectionTitle(50,y,'SOP59 - Guias e Ferramentas'); y+=30;
+    s+=node(430,y,300,38,'Demanda de guia ou ferramenta','trigger'); y+=38; s+=arrow(580,y,580,y+10); y+=10;
+    s+=node(390,y,360,38,'Qual tipo de material?','decision'); y+=38; s+=arrow(580,y,580,y+10); y+=10;
+    s+=label(230,y+5,'Tipo A'); s+=node(130,y+15,240,48,'Guia Interativo\nHTML + Vercel','');
+    s+=label(730,y+5,'Tipo B'); s+=node(630,y+15,240,48,'Ferramenta Funcional\nClaude Code + Vercel','');
+    y+=83; s+=arrow(250,y,580,y+20); s+=arrow(750,y,580,y+20); y+=30;
+    s+=node(430,y,300,38,'Link entregue + ClickUp','end'); y+=60;
+    var total = y+40;
+    var svg = '<svg width="1160" height="'+total+'" viewBox="0 0 1160 '+total+'" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="'+n500+'"/></marker></defs><rect width="1160" height="'+total+'" fill="'+bg+'"/>'+s+'</svg>';
+    return svg;
+  }
+
+  function downloadSVG() {
+    var svg = _genSVG();
+    var blob = new Blob([svg], {type:'image/svg+xml'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'SOPs_Overlens_Fluxograma.svg'; a.click(); URL.revokeObjectURL(a.href);
+  }
+
+  function downloadPNG() {
+    var svg = _genSVG();
+    var m = svg.match(/height="(\d+)"/); var h = m ? parseInt(m[1]) : 3000;
+    var scale = 2;
+    var cvs = document.createElement('canvas');
+    cvs.width = 1160 * scale; cvs.height = h * scale;
+    var ctx = cvs.getContext('2d'); ctx.scale(scale, scale);
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(img.src);
+      cvs.toBlob(function(blob) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'SOPs_Overlens_Fluxograma.png';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 200);
+      }, 'image/png');
+    };
+    img.onerror = function() {
+      URL.revokeObjectURL(img.src);
+      alert('Erro ao gerar PNG. Tente o .mmd no FigJam.');
+    };
+    img.src = URL.createObjectURL(new Blob([svg], {type:'image/svg+xml;charset=utf-8'}));
+  }
+</script>
+</body>
+</html>

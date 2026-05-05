@@ -1,0 +1,20 @@
+flowchart TD
+    A([🎬 Encontro realizado\nCheckpoint · Workshop · Masterclass]):::trigger
+    B[Fase 01 — Aguardar Zoom\nGravação + transcrição + bate papo\n1h a 3h]
+    C[Fase 02 — Cortar no CapCut + IA\nPrompt diagnóstico · corte · exportar 1080p 25fps H.265\n~1h]
+    D[Fase 03 — RI + Mapa Mental\nPrompt RI → Resumo Inteligente → App Mapa Mental\n~20min]
+    E[Fase 04 — Upload plataforma Vanguarda\nTranscrição · mapa mental · bate papo · RI na descrição\n~10min]
+    F[Fase 05 — HandBrake\n1080p 25fps · ~1h a 1h30]
+    G[Fase 06 — Thumbnail\nCheckpoint: fixa · Workshop/MC: Midjourney]
+    H[Fase 07 — Upload Vimeo\nUpload · renomear · subir thumbnail\n~20min]
+    I[Fase 08 — Publicar + avisar\nLink Vimeo na plataforma Vanguarda · template WhatsApp]
+    J([✅ Concluído · Evidência no ClickUp]):::done
+
+    A --> B --> C --> D --> E
+    E --> F & G
+    F --> H
+    G --> H
+    H --> I --> J
+
+    classDef trigger fill:#1a2744,stroke:#3b82f6,color:#93c5fd
+    classDef done fill:#14291e,stroke:#22c55e,color:#86efac
